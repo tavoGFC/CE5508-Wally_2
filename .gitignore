@@ -1,2 +1,18 @@
+
+# expo
+code_app/Wally/.expo
+
+# dependencies
 code_app/Wally/node_modules
-.DS_Store
+
+# misc
+code_app/Wally/.env
+code_app/Wally/.env.local
+code_app/Wally/.env.development.local
+code_app/Wally/.env.test.local
+code_app/Wally/.env.production.local
+code_app/Wally/secrets*.*sh
+
+code_app/Wally/npm-debug.log*
+code_app/Wally/yarn-debug.log*
+code_app/Wally/yarn-error.log*
