@@ -1,4 +1,5 @@
 
+
 # expo
 code_app/Wally/.expo
 
@@ -16,3 +17,4 @@ code_app/Wally/secrets*.*sh
 code_app/Wally/npm-debug.log*
 code_app/Wally/yarn-debug.log*
 code_app/Wally/yarn-error.log*
+code_app/Wally/.watchmanconfig
