@@ -1,7 +1,6 @@
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-
 import HomePage from "./screens/home-page";
 import LogIn from "./screens/log-in";
 import SignUp from "./screens/sign-up";

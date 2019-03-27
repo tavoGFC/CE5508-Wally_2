@@ -1,29 +1,77 @@
-import * as React from "react";
+import * as React from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
+  Alert,
+  ActivityIndicator,
   Button,
-  Image,
-  ActivityIndicator
-} from "react-native";
+  FlatList, 
+  Image, 
+  StyleSheet,
+  Text, 
+  TextInput, 
+  View 
+  } from 'react-native';
 
 export default class HomePage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dataSource: [
+        {key: 'One'},
+        {key: 'Two'}
+      ]
+    };
+  }
+
+  _getGridViewItem (item) {
+    Alert.alert(item);
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <View style={styles.MainContainer}>
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({ item }) => (
+            <View style={styles.gridViewColumns}>
+              <Text style={styles.gridViewItem} 
+              onPress={this._getGridViewItem.bind(this, item.key)}> 
+              {item.key} 
+              </Text>
+            </View>
+          )}
+          //Setting the number of column
+          numColumns={2}
+        />
       </View>
     );
   }
 }
-
+ 
 const styles = StyleSheet.create({
-  container: {
+  MainContainer: {
+    justifyContent: 'center',
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    paddingTop: 30,
+  },
+  imageThumbnail: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100,
+  },
+  gridViewColumns: {
+    justifyContent: 'center',
+    flex:1,
+    alignItems: 'center',
+    height: 100,
+    margin: 5,
+    backgroundColor: '#00BCD4'
+  },
+  gridViewItem: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100,
+    color: '#34fe65',
+    padding: 10,
+    fontSize: 10,
   }
 });
