@@ -4,10 +4,11 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomePage from "./screens/home-page";
 import LogIn from "./screens/log-in";
 import SignUp from "./screens/sign-up";
+import Firebase from "./connections/firebase";
 
 const AppStack = createStackNavigator({
-  LogIn: { screen: LogIn },
-  SignUp: { screen: SignUp },
+  LogIn: { screen: LogIn, Firebase },
+  SignUp: { screen: SignUp, Firebase },
   Home: { screen: HomePage }
 });
 

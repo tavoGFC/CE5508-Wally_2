@@ -1,17 +1,18 @@
 import * as React from "react";
 import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  Button,
+  Alert,
   ActivityIndicator,
   AppRegistry,
-  dismissKeyboard,
-  TouchableWithoutFeedback
-} from "react-native";
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+  dismissKeyboard
+} from 'react-native';
 
-import Firebase from "../../connections/firebase";
+//import Firebase from "../../connections/firebase";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -21,7 +22,7 @@ export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
 
-    Firebase.init();
+    
 
     this.state = {
       isLoading: false,
@@ -30,14 +31,15 @@ export default class LogIn extends React.Component {
       response: ""
     };
 
-    this.logIn = this.logIn.bind(this);
+    //this.logIn = this.logIn.bind(this);
   }
 
-  async logIn() {
+  logIn = async() =>  {
     //console.info(this.state.email);
     //console.info(this.state.password);
     //DismissKeyboard();
     try {
+      this.props.Firebase.init();
       await Firebase.auth().signInWithEmailAndPassword(
         this.state.email,
         this.state.password
@@ -67,7 +69,8 @@ export default class LogIn extends React.Component {
     });
   };
 
-  _onSignUpPressed() {
+  _onSignUpPressed = () => {
+    //Alert.alert("Registrarse");
     this.props.navigation.navigate("SignUp");
   }
 
@@ -124,12 +127,17 @@ export default class LogIn extends React.Component {
             placeholderTextColor="#656565"
             onChange={this._onSearchPasswordUser}
           />
-          <Button onPress={this.logIn} color="#48BBEC" title="Ingresar" />
+          <Button 
+          onPress={this.logIn} 
+          color="#48BBEC" 
+          title="Ingresar">
+          </Button>
           <Button
-            //onPress={this.props.navigation.navigate("SignUp")}
+            onPress={this._onSignUpPressed}
             color="#48BBEC"
             title="Registrarse"
-          />
+            >
+          </Button>
         </View>
         <Text style={styles.description}>{this.state.message}</Text>
         {spinner}

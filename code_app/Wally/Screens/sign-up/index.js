@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 
-import Firebase from "../../connections/firebase";
+//import Firebase from "../../connections/firebase";
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -20,7 +20,7 @@ export default class SignUp extends React.Component {
 
   constructor(props) {
     super(props);
-    Firebase.init();
+    //Firebase.init();
 
     this.state = {
       isLoading: false,
