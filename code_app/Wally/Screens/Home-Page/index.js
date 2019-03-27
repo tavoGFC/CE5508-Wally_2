@@ -1,24 +1,29 @@
-import * as React from 'react';
-import { 
-  Text, 
-  View, 
+import * as React from "react";
+import {
+  Text,
+  View,
   StyleSheet,
-  TextInput, 
-  Button, 
-  Image, 
+  TextInput,
+  Button,
+  Image,
   ActivityIndicator
-  } from 'react-native';
+} from "react-native";
 
-
-  
-export default class HomaPage extends React.Component {
-    
-    render() {
-        return (
-            <View style={styles.container}>
-              <Text>Open up App.js to start working on your app!</Text>
-            </View>
-          );
-    }
-
+export default class HomePage extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Open up App.js to start working on your app!</Text>
+      </View>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
