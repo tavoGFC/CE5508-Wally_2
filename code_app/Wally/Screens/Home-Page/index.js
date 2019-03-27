@@ -1,28 +1,25 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Alert,
   ActivityIndicator,
   Button,
-  FlatList, 
-  Image, 
+  FlatList,
+  Image,
   StyleSheet,
-  Text, 
-  TextInput, 
-  View 
-  } from 'react-native';
+  Text,
+  TextInput,
+  View
+} from "react-native";
 
 export default class HomePage extends React.Component {
   constructor() {
     super();
     this.state = {
-      dataSource: [
-        {key: 'One'},
-        {key: 'Two'}
-      ]
+      dataSource: [{ key: "One" }, { key: "Two" }]
     };
   }
 
-  _getGridViewItem (item) {
+  _getGridViewItem(item) {
     Alert.alert(item);
   }
 
@@ -33,9 +30,11 @@ export default class HomePage extends React.Component {
           data={this.state.dataSource}
           renderItem={({ item }) => (
             <View style={styles.gridViewColumns}>
-              <Text style={styles.gridViewItem} 
-              onPress={this._getGridViewItem.bind(this, item.key)}> 
-              {item.key} 
+              <Text
+                style={styles.gridViewItem}
+                onPress={this._getGridViewItem.bind(this, item.key)}
+              >
+                {item.key}
               </Text>
             </View>
           )}
@@ -46,32 +45,32 @@ export default class HomePage extends React.Component {
     );
   }
 }
- 
+
 const styles = StyleSheet.create({
   MainContainer: {
-    justifyContent: 'center',
+    justifyContent: "center",
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 30
   },
   imageThumbnail: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 100
   },
   gridViewColumns: {
-    justifyContent: 'center',
-    flex:1,
-    alignItems: 'center',
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
     height: 100,
     margin: 5,
-    backgroundColor: '#00BCD4'
+    backgroundColor: "#00BCD4"
   },
   gridViewItem: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: 100,
-    color: '#34fe65',
+    color: "#34fe65",
     padding: 10,
-    fontSize: 10,
+    fontSize: 10
   }
 });

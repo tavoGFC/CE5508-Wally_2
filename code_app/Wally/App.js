@@ -7,8 +7,8 @@ import SignUp from "./screens/sign-up";
 import Firebase from "./connections/firebase";
 
 const AppStack = createStackNavigator({
-  LogIn: { screen: LogIn, Firebase },
-  SignUp: { screen: SignUp, Firebase },
+  LogIn: { screen: LogIn },
+  SignUp: { screen: SignUp },
   Home: { screen: HomePage }
 });
 

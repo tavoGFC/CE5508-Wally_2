@@ -9,10 +9,10 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   View,
-  dismissKeyboard
-} from 'react-native';
+  DismissKeyboard
+} from "react-native";
 
-//import Firebase from "../../connections/firebase";
+import Firebase from "../../connections/firebase";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -22,24 +22,19 @@ export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
 
-    
+    //Firebase.init();
 
     this.state = {
       isLoading: false,
       email: "",
       password: "",
-      response: ""
+      response: "",
+      Firebase: Firebase.init()
     };
-
-    //this.logIn = this.logIn.bind(this);
   }
 
-  logIn = async() =>  {
-    //console.info(this.state.email);
-    //console.info(this.state.password);
-    //DismissKeyboard();
+  _logIn = async () => {
     try {
-      this.props.Firebase.init();
       await Firebase.auth().signInWithEmailAndPassword(
         this.state.email,
         this.state.password
@@ -55,7 +50,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  }
+  };
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -70,36 +65,9 @@ export default class LogIn extends React.Component {
   };
 
   _onSignUpPressed = () => {
-    //Alert.alert("Registrarse");
+    Alert.alert("Registrarse");
     this.props.navigation.navigate("SignUp");
-  }
-
-  /*
-  _onSearchPressed = () => {
-    if (
-      this.state.searchUser === "randy" &&
-      this.state.searchPassword === "randy123"
-    ) {
-      this.props.navigation.navigate("Home");
-    } else {
-      this.setState({
-        message: "El usuario no existe. Favor de intentar de nuevo."
-      });
-    }
   };
-
-  _onSearchTextUser = event => {
-    this.setState({
-      searchUser: event.nativeEvent.text
-    });
-  };
-
-  _onSearchTextPassword = event => {
-    this.setState({
-      searchPassword: event.nativeEvent.text
-    });
-  };
-  */
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -126,18 +94,14 @@ export default class LogIn extends React.Component {
             value={this.state.searchPassword}
             placeholderTextColor="#656565"
             onChange={this._onSearchPasswordUser}
+            secureTextEntry={true}
           />
-          <Button 
-          onPress={this.logIn} 
-          color="#48BBEC" 
-          title="Ingresar">
-          </Button>
+          <Button onPress={this._logIn} color="#48BBEC" title="Ingresar" />
           <Button
             onPress={this._onSignUpPressed}
             color="#48BBEC"
             title="Registrarse"
-            >
-          </Button>
+          />
         </View>
         <Text style={styles.description}>{this.state.message}</Text>
         {spinner}
@@ -169,7 +133,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   description: {
-    //marginButton: 5,
+    marginBottom: 5,
     fontSize: 18,
     color: "#656565",
     textAlign: "center"
