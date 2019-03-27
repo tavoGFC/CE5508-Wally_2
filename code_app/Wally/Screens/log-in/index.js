@@ -46,7 +46,7 @@ export default class LogIn extends React.Component {
       this.setState({
         response: "Bienvenido!"
       });
-      this.props.navigation.push("Home");
+      this.props.navigation.navigate("Home");
     } catch (error) {
       this.setState({
         response: error.toString()

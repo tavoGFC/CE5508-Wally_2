@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import * as firebase from "firebase";
 
 const config = {
   apiKey: "AIzaSyCYGVofrerkHU2UuIpawwT4gGN69p_tACs",
@@ -10,10 +10,10 @@ const config = {
 };
 
 export default class Firebase {
-  //static auth;
+  static auth;
 
   static init() {
     firebase.initializeApp(config);
-    Firebase = firebase.auth();
+    Firebase.auth = firebase.auth();
   }
 }
