@@ -36,22 +36,22 @@ export default class TabController extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
+    alignItems: "center",
     marginTop: 65,
-    alignItems: "center"
+    padding: 30
   },
   actions: {
-    height: 35,
-    width: 160,
     backgroundColor: '#db256b',
     borderColor: 'white',
     borderRadius: 30,
     color: 'white',
     fontSize: 15,
     fontWeight: 'bold',
-    padding: 8,
-    marginTop: 5,
+    height: 35,
     marginBottom: 5,
+    marginTop: 5,
+    padding: 8,
     textAlign:'center',
+    width: 160,
   }
 });

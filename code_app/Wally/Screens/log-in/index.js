@@ -2,15 +2,13 @@ import * as React from "react";
 import {
   Alert,
   ActivityIndicator,
-  AppRegistry,
   Button,
   Image,
   StyleSheet,
   Text,
   TextInput,
-  TouchableWithoutFeedback,
-  View,
-  DismissKeyboard
+  TouchableOpacity,
+  View
 } from "react-native";
 
 import Firebase from "../../connections/firebase";
@@ -19,7 +17,6 @@ import TrashIcon from "../../assets/trash.png";
 export default class LogIn extends React.Component {
   static navigationOptions = {
     title: "Basurero Inteligente: Wally"
-    //headerForceInset: { top: "never", bottom: "never" }
   };
 
   constructor(props) {
@@ -80,7 +77,7 @@ export default class LogIn extends React.Component {
         <View style={styles.flowRight}>
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="Correo"
             value={this.state.searchUser}
             placeholderTextColor="#656565"
@@ -88,19 +85,23 @@ export default class LogIn extends React.Component {
           />
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="******************"
             value={this.state.searchPassword}
             placeholderTextColor="#656565"
             onChange={this._onSearchPasswordUser}
             secureTextEntry={true}
           />
-          <Button onPress={this._logIn} color="#772a2a" title="Ingresar" />
-          <Button
-            onPress={this._onSignUpPressed}
-            color="#772a2a"
-            title="Registrarse"
-          />
+          <TouchableOpacity onPress={this._logIn}> 
+            <Text style = {styles.button}>
+            Ingresar
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this._onSignUpPressed}> 
+            <Text style = {styles.button}>
+            Registrarse
+            </Text>
+          </TouchableOpacity>
         </View>
         <Text style={styles.description}>{this.state.message}</Text>
         <Image source={TrashIcon} style={styles.image} />
@@ -112,45 +113,59 @@ export default class LogIn extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
-    marginTop: 65,
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    marginTop: 5,
+    padding: 10
   },
   title: {
     fontSize: 50,
-    textAlign: "center",
-    marginBottom: 30
+    marginBottom: 15,
+    textAlign: "center"
   },
   description: {
-    marginBottom: 5,
-    fontSize: 18,
     color: "#772a2a",
+    fontSize: 18,
+    marginBottom: 5,
     textAlign: "center"
   },
   flowRight: {
-    flexDirection: "column",
     alignItems: "center",
-    alignSelf: "stretch"
+    alignSelf: "stretch",
+    flexDirection: "column"
   },
-  searchInput: {
-    justifyContent: "space-between",
-    height: 36,
-    padding: 1,
-    marginRight: 5,
-    marginTop: 10,
-    width: "50%",
-    fontSize: 18,
-    borderWidth: 1,
+  textInput: {
     borderColor: "#772a2a",
     borderRadius: 8,
+    borderWidth: 1,
     color: "#000000",
+    fontSize: 18,
+    height: 36,
+    justifyContent: "space-between",
+    marginRight: 5,
+    marginTop: 10,
+    padding: 1,
     paddingBottom: 6,
-    textAlign: "center"
+    textAlign: "center",
+    width: "50%"
   },
   image: {
-    width: "50%",
     height: "50%",
-    resizeMode: "center"
+    resizeMode: "center",
+    width: "50%"
+  },
+  button: {
+    backgroundColor: '#db256b',
+    borderColor: 'white',
+    borderRadius: 30,
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+    height: 35,
+    marginBottom: 5,
+    marginTop: 5,
+    padding: 8,
+    textAlign:'center',
+    width: 160
   }
 });

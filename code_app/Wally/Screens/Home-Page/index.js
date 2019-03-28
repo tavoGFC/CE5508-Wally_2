@@ -55,22 +55,22 @@ export default class HomePage extends React.Component {
 const styles = StyleSheet.create({
   
   mainContainer: {
-    justifyContent: 'center',
     flex: 1,
+    justifyContent: 'center',
     paddingTop: '35%',
   },
   imageThumbnail: {
     alignItems: 'center',
+    height: 100,
     resizeMode: 'contain',
     width: 100,
-    height: 100,
   },
   gridViewColumns: {
-    justifyContent: 'center',
-    flex:1,
     alignItems: 'center',
+    backgroundColor: '#fff',
+    flex:1,
     height: 100,
-    margin: 2,
-    backgroundColor: '#fff'
+    justifyContent: 'center',
+    margin: 2
   }
 });

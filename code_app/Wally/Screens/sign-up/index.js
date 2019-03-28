@@ -7,11 +7,8 @@ import {
   TextInput,
   Button,
   ActivityIndicator,
-  AppRegistry,
-  dismissKeyboard,
-  TouchableWithoutFeedback
+  TouchableOpacity
 } from "react-native";
-
 import Firebase from "../../connections/firebase";
 
 export default class SignUp extends React.Component {
@@ -163,11 +160,11 @@ export default class SignUp extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <Button
-          color="#772a2a"
-          title="Registrarse"
-          onPress={this._submitInformation}
-        />
+        <TouchableOpacity onPress={this._submitInformation}> 
+          <Text style = {styles.button}>
+            Registrarse
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -176,7 +173,7 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     padding: 30,
-    marginTop: 65,
+    marginTop: 40,
     alignItems: "center",
     backgroundColor: "white"
   },
@@ -215,5 +212,19 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "50%",
     resizeMode: "center"
+  },
+  button: {
+    backgroundColor: '#db256b',
+    borderColor: 'white',
+    borderRadius: 30,
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+    height: 35,
+    marginBottom: 5,
+    marginTop: 5,
+    padding: 8,
+    textAlign:'center',
+    width: 160
   }
 });
