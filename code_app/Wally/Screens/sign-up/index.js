@@ -12,9 +12,11 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 
+import Firebase from "../../connections/firebase";
+
 export default class SignUp extends React.Component {
   static navigationOptions = {
-    title: "Registrese en Wally."
+    title: "Registrese en Wally"
   };
 
   constructor(props) {
@@ -26,8 +28,7 @@ export default class SignUp extends React.Component {
       email: "",
       password: "",
       confirmPassword: "",
-      response: "",
-      Firebase: this.props.Firebase
+      response: ""
     };
 
     this.validateName = this.validateName.bind(this);
@@ -35,11 +36,12 @@ export default class SignUp extends React.Component {
     this.validatePassword = this.validatePassword.bind(this);
   }
 
-  _signup = async () => {
+  _signUp = async () => {
     try {
-      await firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password);
+      await Firebase.auth().createUserWithEmailAndPassword(
+        this.state.email,
+        this.state.password
+      );
 
       this.setState({
         response: "Cuenta creada."
@@ -82,20 +84,16 @@ export default class SignUp extends React.Component {
       this.validateEmail() &&
       this.validatePassword()
     ) {
-      Alert.alert("servi");
+      this._signUp();
     } else {
-      Alert.alert("me mame");
+      Alert.alert("Los datos ingresados son incorrectos. ");
     }
   };
 
   validateName() {
     if (this.state.name === "") {
-      //this.setState({ validated: false });
-      //Alert.alert("El nombre no puede ser vacío. ");
       return false;
     } else {
-      //this.setState({ validated: true });
-      //Alert.alert("El nombre es válido. ");
       return true;
     }
   }
@@ -103,12 +101,8 @@ export default class SignUp extends React.Component {
   validateEmail() {
     const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(this.state.email) === false) {
-      //this.setState({ validated: false });
-      //Alert.alert("El correo es inválido. ");
       return false;
     } else {
-      //this.setState({ validated: true });
-      //Alert.alert("El correo es válido. ");
       return true;
     }
   }
@@ -137,7 +131,7 @@ export default class SignUp extends React.Component {
           <TextInput
             underlineColorAndroid={"transparent"}
             style={styles.searchInput}
-            placeholder="Ingrese su nombre."
+            placeholder="Nombre"
             value={this.state.searchNameUser}
             placeholderTextColor="#656565"
             onChange={this._onSearchNameUser}
@@ -145,7 +139,7 @@ export default class SignUp extends React.Component {
           <TextInput
             underlineColorAndroid={"transparent"}
             style={styles.searchInput}
-            placeholder="Ingrese su correo."
+            placeholder="Correo"
             value={this.state.searchEmailUser}
             placeholderTextColor="#656565"
             onChange={this._onSearchEmailUser}
@@ -153,7 +147,7 @@ export default class SignUp extends React.Component {
           <TextInput
             underlineColorAndroid={"transparent"}
             style={styles.searchInput}
-            placeholder="Ingrese su clave."
+            placeholder="Contraseña"
             value={this.state.searchPasswordUser}
             placeholderTextColor="#656565"
             onChange={this._onSearchPasswordUser}
@@ -162,7 +156,7 @@ export default class SignUp extends React.Component {
           <TextInput
             underlineColorAndroid={"transparent"}
             style={styles.searchInput}
-            placeholder="Confirme su clave."
+            placeholder="Repetir Contraseña "
             value={this.state.searchConfirmPasswordUser}
             placeholderTextColor="#656565"
             onChange={this._onSearchConfirmPasswordUser}
@@ -170,7 +164,7 @@ export default class SignUp extends React.Component {
           />
         </View>
         <Button
-          color="#48BBEC"
+          color="#772a2a"
           title="Registrarse"
           onPress={this._submitInformation}
         />
@@ -180,31 +174,46 @@ export default class SignUp extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 30,
+    marginTop: 65,
+    alignItems: "center",
+    backgroundColor: "white"
+  },
+  title: {
+    fontSize: 50,
+    textAlign: "center",
+    marginBottom: 30
+  },
+  description: {
+    marginBottom: 5,
+    fontSize: 18,
+    color: "#772a2a",
+    textAlign: "center"
+  },
   flowRight: {
     flexDirection: "column",
     alignItems: "center",
     alignSelf: "stretch"
   },
   searchInput: {
+    justifyContent: "space-between",
     height: 36,
-    padding: 4,
+    padding: 1,
     marginRight: 5,
-    width: "100%",
+    marginTop: 10,
+    width: "60%",
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "#48BBEC",
+    borderColor: "#772a2a",
     borderRadius: 8,
-    color: "#48BBEC"
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: "center"
-  },
-  description: {
-    marginBottom: 5,
-    fontSize: 18,
-    color: "#656565",
+    color: "#000000",
+    paddingBottom: 6,
     textAlign: "center"
+  },
+  image: {
+    width: "50%",
+    height: "50%",
+    resizeMode: "center"
   }
 });
