@@ -1,15 +1,8 @@
 import * as React from "react";
 import {
-  Alert,
-  ActivityIndicator,
-  AppRegistry,
-  Button,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  View,
-  dismissKeyboard
+  View
 } from 'react-native';
 
 export default class TabDashboard extends React.Component {

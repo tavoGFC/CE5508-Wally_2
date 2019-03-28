@@ -1,13 +1,8 @@
 import * as React from 'react';
 import {
-  Alert,
-  ActivityIndicator,
-  Button,
   FlatList, 
   Image, 
   StyleSheet,
-  Text, 
-  TextInput,
   TouchableHighlight, 
   View 
   } from 'react-native';
@@ -18,7 +13,7 @@ export default class HomePage extends React.Component {
   static navigationOptions = {
     title: 'Pagina Principal'
   }
-
+  
   constructor() {
     super();
     this.state = {
@@ -30,7 +25,6 @@ export default class HomePage extends React.Component {
   }
 
   _selectGridItem (item) {
-   //Alert.alert(item);
     if (item === 'One'){
       this.props.navigation.navigate("TabsControl");
     }

@@ -1,16 +1,9 @@
 import * as React from "react";
 import {
-  Alert,
-  ActivityIndicator,
-  AppRegistry,
-  Button,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  dismissKeyboard
+  View
 } from 'react-native';
 
 export default class TabController extends React.Component {
@@ -21,7 +14,6 @@ export default class TabController extends React.Component {
     const handlePress = () => false
     return (
       <View style={styles.container}>
-        
         <TouchableOpacity onPress={handlePress}> 
           <Text style = {styles.actions}>
               Abrir Tapa
