@@ -1,76 +1,76 @@
-import * as React from "react";
+import * as React from 'react';
 import {
-  Alert,
-  ActivityIndicator,
-  Button,
-  FlatList,
-  Image,
+  FlatList, 
+  Image, 
   StyleSheet,
-  Text,
-  TextInput,
-  View
-} from "react-native";
+  TouchableHighlight, 
+  View 
+  } from 'react-native';
+import IconDumpster from '../../assets/iconBasurero3.png';
+import IconSettings from '../../assets/iconConfig.png';
 
 export default class HomePage extends React.Component {
+  static navigationOptions = {
+    title: 'Pagina Principal'
+  }
+  
   constructor() {
     super();
     this.state = {
-      dataSource: [{ key: "One" }, { key: "Two" }]
+      dataSource: [
+        {key: 'One', image: IconDumpster},
+        {key: 'Two', image: IconSettings}
+      ]
     };
   }
 
-  _getGridViewItem(item) {
-    Alert.alert(item);
+  _selectGridItem (item) {
+    if (item === 'One'){
+      this.props.navigation.navigate("TabsControl");
+    }
+    else if (item === 'Two'){
+      this.props.navigation.navigate("Settings");
+    }
   }
 
   render() {
     return (
-      <View style={styles.MainContainer}>
+      <View style={styles.mainContainer}>
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
             <View style={styles.gridViewColumns}>
-              <Text
-                style={styles.gridViewItem}
-                onPress={this._getGridViewItem.bind(this, item.key)}
-              >
-                {item.key}
-              </Text>
+              <TouchableHighlight  onPress={this._selectGridItem.bind(this, item.key)}>
+              <Image style={styles.imageThumbnail} source={item.image}></Image>
+              </TouchableHighlight>
             </View>
           )}
-          //Setting the number of column
           numColumns={2}
         />
       </View>
     );
   }
 }
-
+ 
 const styles = StyleSheet.create({
-  MainContainer: {
-    justifyContent: "center",
+  
+  mainContainer: {
+    justifyContent: 'center',
     flex: 1,
-    paddingTop: 30
+    paddingTop: '35%',
   },
   imageThumbnail: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 100
+    alignItems: 'center',
+    resizeMode: 'contain',
+    width: 100,
+    height: 100,
   },
   gridViewColumns: {
-    justifyContent: "center",
-    flex: 1,
-    alignItems: "center",
+    justifyContent: 'center',
+    flex:1,
+    alignItems: 'center',
     height: 100,
-    margin: 5,
-    backgroundColor: "#00BCD4"
-  },
-  gridViewItem: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 100,
-    color: "#34fe65",
-    padding: 10,
-    fontSize: 10
+    margin: 2,
+    backgroundColor: '#fff'
   }
 });
