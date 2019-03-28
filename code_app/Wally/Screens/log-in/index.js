@@ -12,7 +12,7 @@ import {
   dismissKeyboard
 } from 'react-native';
 
-//import Firebase from "../../connections/firebase";
+import Firebase from "../../connections/firebase";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -21,8 +21,7 @@ export default class LogIn extends React.Component {
 
   constructor(props) {
     super(props);
-
-    
+    Firebase.init();
 
     this.state = {
       isLoading: false,
@@ -39,7 +38,6 @@ export default class LogIn extends React.Component {
     //console.info(this.state.password);
     //DismissKeyboard();
     try {
-      this.props.Firebase.init();
       await Firebase.auth().signInWithEmailAndPassword(
         this.state.email,
         this.state.password
