@@ -4,24 +4,26 @@ import {
   ActivityIndicator,
   AppRegistry,
   Button,
+  Image,
   StyleSheet,
   Text,
   TextInput,
   TouchableWithoutFeedback,
   View,
-  dismissKeyboard
-} from 'react-native';
+  DismissKeyboard
+} from "react-native";
 
 import Firebase from "../../connections/firebase";
+import TrashIcon from "../../assets/trash.png";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
     title: "Basurero Inteligente: Wally"
+    //headerForceInset: { top: "never", bottom: "never" }
   };
 
   constructor(props) {
     super(props);
-    Firebase.init();
 
     this.state = {
       isLoading: false,
@@ -29,14 +31,9 @@ export default class LogIn extends React.Component {
       password: "",
       response: ""
     };
-
-    //this.logIn = this.logIn.bind(this);
   }
 
-  logIn = async() =>  {
-    //console.info(this.state.email);
-    //console.info(this.state.password);
-    //DismissKeyboard();
+  _logIn = async () => {
     try {
       await Firebase.auth().signInWithEmailAndPassword(
         this.state.email,
@@ -53,7 +50,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  }
+  };
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -68,36 +65,9 @@ export default class LogIn extends React.Component {
   };
 
   _onSignUpPressed = () => {
-    //Alert.alert("Registrarse");
+    Alert.alert("Registrarse");
     this.props.navigation.navigate("SignUp");
-  }
-
-  /*
-  _onSearchPressed = () => {
-    if (
-      this.state.searchUser === "randy" &&
-      this.state.searchPassword === "randy123"
-    ) {
-      this.props.navigation.navigate("Home");
-    } else {
-      this.setState({
-        message: "El usuario no existe. Favor de intentar de nuevo."
-      });
-    }
   };
-
-  _onSearchTextUser = event => {
-    this.setState({
-      searchUser: event.nativeEvent.text
-    });
-  };
-
-  _onSearchTextPassword = event => {
-    this.setState({
-      searchPassword: event.nativeEvent.text
-    });
-  };
-  */
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -105,14 +75,13 @@ export default class LogIn extends React.Component {
     ) : null;
     return (
       <View style={styles.container}>
-        <Text style={styles.description}>
-          Por favor ingrese su usuario y contraseña.
-        </Text>
+        <Text style={styles.title}>Wally</Text>
+        <Text style={styles.description}>Ingrese su correo y contaseña. </Text>
         <View style={styles.flowRight}>
           <TextInput
             underlineColorAndroid={"transparent"}
             style={styles.searchInput}
-            placeholder="Ingrese su correo."
+            placeholder="Correo"
             value={this.state.searchUser}
             placeholderTextColor="#656565"
             onChange={this._onSearchEmailUser}
@@ -124,20 +93,17 @@ export default class LogIn extends React.Component {
             value={this.state.searchPassword}
             placeholderTextColor="#656565"
             onChange={this._onSearchPasswordUser}
+            secureTextEntry={true}
           />
-          <Button 
-          onPress={this.logIn} 
-          color="#48BBEC" 
-          title="Ingresar">
-          </Button>
+          <Button onPress={this._logIn} color="#772a2a" title="Ingresar" />
           <Button
             onPress={this._onSignUpPressed}
-            color="#48BBEC"
+            color="#772a2a"
             title="Registrarse"
-            >
-          </Button>
+          />
         </View>
         <Text style={styles.description}>{this.state.message}</Text>
+        <Image source={TrashIcon} style={styles.image} />
         {spinner}
       </View>
     );
@@ -145,31 +111,46 @@ export default class LogIn extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 30,
+    marginTop: 65,
+    alignItems: "center",
+    backgroundColor: "white"
+  },
+  title: {
+    fontSize: 50,
+    textAlign: "center",
+    marginBottom: 30
+  },
+  description: {
+    marginBottom: 5,
+    fontSize: 18,
+    color: "#772a2a",
+    textAlign: "center"
+  },
   flowRight: {
     flexDirection: "column",
     alignItems: "center",
     alignSelf: "stretch"
   },
   searchInput: {
+    justifyContent: "space-between",
     height: 36,
-    padding: 4,
+    padding: 1,
     marginRight: 5,
+    marginTop: 10,
     width: "50%",
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "#48BBEC",
+    borderColor: "#772a2a",
     borderRadius: 8,
-    color: "#48BBEC"
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: "center"
-  },
-  description: {
-    //marginButton: 5,
-    fontSize: 18,
-    color: "#656565",
+    color: "#000000",
+    paddingBottom: 6,
     textAlign: "center"
+  },
+  image: {
+    width: "50%",
+    height: "50%",
+    resizeMode: "center"
   }
 });
