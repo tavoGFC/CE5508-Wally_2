@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import createFirebaseClient from "../connections/firebase";
+
+//import createFirebaseClient from "../connections/firebase";
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -30,7 +31,7 @@ export default class SignUp extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
-    this.firebaseClient = createFirebaseClient();
+    //this.firebaseClient = createFirebaseClient();
   }
 
   _onSearchNameUser = event => {
@@ -57,7 +58,7 @@ export default class SignUp extends React.Component {
     });
   };
 
-  _signUp = async () => {
+  /*  _signUp = async () => {
     try {
       await firebaseClient
         .auth()
@@ -72,7 +73,7 @@ export default class SignUp extends React.Component {
         response: error.toString()
       });
     }
-  };
+  }; */
 
   _submitInformation = () => {
     if (
@@ -80,7 +81,8 @@ export default class SignUp extends React.Component {
       this.validateEmail() &&
       this.validatePassword()
     ) {
-      this._signUp();
+      this.props.navigation.navigate("Home");
+      //this._signUp();
     } else {
       Alert.alert("Los datos ingresados son incorrectos. ");
     }

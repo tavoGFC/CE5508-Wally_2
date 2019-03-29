@@ -10,7 +10,7 @@ import {
   View
 } from "react-native";
 
-import createFirebaseClient from "../connections/firebase";
+//import createFirebaseClient from "../connections/firebase";
 import TrashIcon from "../../../assets/trash.png";
 
 export default class LogIn extends React.Component {
@@ -28,10 +28,10 @@ export default class LogIn extends React.Component {
       response: ""
     };
 
-    this.firebaseClient = createFirebaseClient();
+    //this.firebaseClient = createFirebaseClient();
   }
 
-  _logIn = async () => {
+  /*  _logIn = async () => {
     try {
       await this.firebaseClient
         .auth()
@@ -47,7 +47,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  };
+  }; */
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -92,7 +92,9 @@ export default class LogIn extends React.Component {
             onChange={this._onSearchPasswordUser}
             secureTextEntry={true}
           />
-          <TouchableOpacity onPress={this._logIn}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Home")}
+          >
             <Text style={styles.button}>Ingresar</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed}>
