@@ -1,15 +1,14 @@
 import * as React from "react";
 import {
-  Alert,
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  Button,
   ActivityIndicator,
-  TouchableOpacity
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
-import Firebase from "../../connections/firebase";
+import createFirebaseClient from "../connections/firebase";
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -31,25 +30,8 @@ export default class SignUp extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
+    this.firebaseClient = createFirebaseClient();
   }
-
-  _signUp = async () => {
-    try {
-      await Firebase.auth().createUserWithEmailAndPassword(
-        this.state.email,
-        this.state.password
-      );
-
-      this.setState({
-        response: "Cuenta creada."
-      });
-      this.props.navigation.navigate("Home");
-    } catch (error) {
-      this.setState({
-        response: error.toString()
-      });
-    }
-  };
 
   _onSearchNameUser = event => {
     this.setState({
@@ -73,6 +55,23 @@ export default class SignUp extends React.Component {
     this.setState({
       confirmPassword: event.nativeEvent.text
     });
+  };
+
+  _signUp = async () => {
+    try {
+      await firebaseClient
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password);
+
+      this.setState({
+        response: "Cuenta creada."
+      });
+      this.props.navigation.navigate("Home");
+    } catch (error) {
+      this.setState({
+        response: error.toString()
+      });
+    }
   };
 
   _submitInformation = () => {
@@ -160,10 +159,8 @@ export default class SignUp extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity onPress={this._submitInformation}> 
-          <Text style = {styles.button}>
-            Registrarse
-          </Text>
+        <TouchableOpacity onPress={this._submitInformation}>
+          <Text style={styles.button}>Registrarse</Text>
         </TouchableOpacity>
       </View>
     );
@@ -172,41 +169,41 @@ export default class SignUp extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
-    marginTop: 40,
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    marginTop: 40,
+    padding: 30
   },
   title: {
     fontSize: 50,
-    textAlign: "center",
-    marginBottom: 30
+    marginBottom: 30,
+    textAlign: "center"
   },
   description: {
-    marginBottom: 5,
-    fontSize: 18,
     color: "#772a2a",
+    fontSize: 18,
+    marginBottom: 5,
     textAlign: "center"
   },
   flowRight: {
-    flexDirection: "column",
     alignItems: "center",
-    alignSelf: "stretch"
+    alignSelf: "stretch",
+    flexDirection: "column"
   },
   searchInput: {
-    justifyContent: "space-between",
-    height: 36,
-    padding: 1,
-    marginRight: 5,
-    marginTop: 10,
-    width: "60%",
-    fontSize: 18,
-    borderWidth: 1,
     borderColor: "#772a2a",
     borderRadius: 8,
+    borderWidth: 1,
     color: "#000000",
+    fontSize: 18,
+    height: 36,
+    justifyContent: "space-between",
+    marginRight: 5,
+    marginTop: 10,
+    padding: 1,
     paddingBottom: 6,
-    textAlign: "center"
+    textAlign: "center",
+    width: "60%"
   },
   image: {
     width: "50%",
@@ -214,17 +211,17 @@ const styles = StyleSheet.create({
     resizeMode: "center"
   },
   button: {
-    backgroundColor: '#db256b',
-    borderColor: 'white',
+    backgroundColor: "#db256b",
+    borderColor: "white",
     borderRadius: 30,
-    color: 'white',
+    color: "white",
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     height: 35,
     marginBottom: 5,
     marginTop: 5,
     padding: 8,
-    textAlign:'center',
+    textAlign: "center",
     width: 160
   }
 });

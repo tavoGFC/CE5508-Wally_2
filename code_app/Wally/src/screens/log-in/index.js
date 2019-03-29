@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   Alert,
   ActivityIndicator,
-  Button,
   Image,
   StyleSheet,
   Text,
@@ -11,8 +10,8 @@ import {
   View
 } from "react-native";
 
-import Firebase from "../../connections/firebase";
-import TrashIcon from "../../assets/trash.png";
+import createFirebaseClient from "../connections/firebase";
+import TrashIcon from "../../../assets/trash.png";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -28,14 +27,15 @@ export default class LogIn extends React.Component {
       password: "",
       response: ""
     };
+
+    this.firebaseClient = createFirebaseClient();
   }
 
   _logIn = async () => {
     try {
-      await Firebase.auth().signInWithEmailAndPassword(
-        this.state.email,
-        this.state.password
-      );
+      await this.firebaseClient
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password);
 
       this.setState({
         response: "Bienvenido!"
@@ -92,15 +92,11 @@ export default class LogIn extends React.Component {
             onChange={this._onSearchPasswordUser}
             secureTextEntry={true}
           />
-          <TouchableOpacity onPress={this._logIn}> 
-            <Text style = {styles.button}>
-            Ingresar
-            </Text>
+          <TouchableOpacity onPress={this._logIn}>
+            <Text style={styles.button}>Ingresar</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this._onSignUpPressed}> 
-            <Text style = {styles.button}>
-            Registrarse
-            </Text>
+          <TouchableOpacity onPress={this._onSignUpPressed}>
+            <Text style={styles.button}>Registrarse</Text>
           </TouchableOpacity>
         </View>
         <Text style={styles.description}>{this.state.message}</Text>
@@ -155,17 +151,17 @@ const styles = StyleSheet.create({
     width: "50%"
   },
   button: {
-    backgroundColor: '#db256b',
-    borderColor: 'white',
+    backgroundColor: "#db256b",
+    borderColor: "white",
     borderRadius: 30,
-    color: 'white',
+    color: "white",
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     height: 35,
     marginBottom: 5,
     marginTop: 5,
     padding: 8,
-    textAlign:'center',
+    textAlign: "center",
     width: 160
   }
 });

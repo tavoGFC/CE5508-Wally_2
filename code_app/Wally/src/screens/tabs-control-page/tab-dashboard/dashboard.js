@@ -1,15 +1,11 @@
 import * as React from "react";
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
 export default class TabDashboard extends React.Component {
   static navigationOptions = {
     title: "Estadisiticas Wally"
   };
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,8 +19,8 @@ export default class TabDashboard extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
+    alignItems: "center",
     marginTop: 65,
-    alignItems: "center"
+    padding: 30
   }
 });
