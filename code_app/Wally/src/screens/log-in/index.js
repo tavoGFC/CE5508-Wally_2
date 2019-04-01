@@ -11,6 +11,8 @@ import {
 import createFirebaseClient from "../../components/firebase";
 import trashIcon from "../../../assets/trash.png";
 import wallyTitle from "../../../assets/wallyTitle.png";
+import wally from "../../../assets/wally.jpeg";
+
 import stylesLogIn from "../../styles/styles";
 
 export default class LogIn extends React.Component {
@@ -71,8 +73,10 @@ export default class LogIn extends React.Component {
     ) : null;
     return (
       <View style={styles.containerLogIn}>
-        <Text style={styles.titleLogIn}>Wally</Text>
-        <Text style={styles.description}>Ingrese su correo y contaseña. </Text>
+        <Image source={wallyTitle} style={styles.imageTitle} />
+        {/* <Text style={styles.descriptionLogIn}>
+          Ingrese su correo y contaseña
+        </Text> */}
         <View style={styles.flowRight}>
           <TextInput
             autoCorrect={false}
@@ -104,7 +108,7 @@ export default class LogIn extends React.Component {
           </TouchableOpacity>
         </View>
         <Text style={styles.descriptionLogIn}>{this.state.message}</Text>
-        <Image source={trashIcon} style={styles.image} />
+        {/* <Image source={wally} style={styles.image} /> */}
         {spinner}
       </View>
     );

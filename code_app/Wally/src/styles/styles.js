@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "green",
     borderColor: "white",
-    borderRadius: 30,
+    borderRadius: 10,
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   image: {
-    height: "50%",
-    resizeMode: "center",
-    width: "50%"
+    height: "30%",
+    resizeMode: "contain",
+    width: "60%"
   },
   textInput: {
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -54,6 +54,18 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 5,
     padding: 10
+  },
+  descriptionLogIn: {
+    color: "green",
+    fontSize: 18,
+    marginTop: 15,
+    marginBottom: 5,
+    textAlign: "center"
+  },
+  imageTitle: {
+    height: "20%",
+    resizeMode: "contain",
+    width: "100%"
   },
   titleLogIn: {
     fontSize: 50,
