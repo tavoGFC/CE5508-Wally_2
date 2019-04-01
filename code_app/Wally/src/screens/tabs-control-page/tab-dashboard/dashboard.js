@@ -1,26 +1,22 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
+
+import stylesTabDashboard from "../../../styles/styles";
 
 export default class TabDashboard extends React.Component {
   static navigationOptions = {
-    title: "Estadisiticas Wally"
+    title: "Estadísticas Wally"
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Enero: 10 kg de basura</Text>
-        <Text>Febrero: 8 kg de basura</Text>
-        <Text>Marzo: 5 kg de basura</Text>
+      <View style={styles.containerDashboard}>
+        <Text style={styles.description}>Enero: 10 kg de basura</Text>
+        <Text style={styles.description}>Febrero: 8 kg de basura</Text>
+        <Text style={styles.description}>Marzo: 5 kg de basura</Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    marginTop: 65,
-    padding: 30
-  }
-});
+const styles = stylesTabDashboard;

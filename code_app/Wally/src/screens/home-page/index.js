@@ -8,10 +8,11 @@ import {
 } from "react-native";
 import IconDumpster from "../../../assets/iconBasurero3.png";
 import IconSettings from "../../../assets/iconConfig.png";
+import stylesHomePage from "../../styles/styles";
 
 export default class HomePage extends React.Component {
   static navigationOptions = {
-    title: "Pagina Principal"
+    title: "Página Principal"
   };
 
   constructor() {
@@ -53,24 +54,4 @@ export default class HomePage extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: "35%"
-  },
-  imageThumbnail: {
-    alignItems: "center",
-    height: 100,
-    resizeMode: "contain",
-    width: 100
-  },
-  gridViewColumns: {
-    alignItems: "center",
-    backgroundColor: "#fff",
-    flex: 1,
-    height: 100,
-    justifyContent: "center",
-    margin: 2
-  }
-});
+const styles = stylesHomePage;

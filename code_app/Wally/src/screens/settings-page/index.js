@@ -1,11 +1,15 @@
 import * as React from "react";
 import { Text } from "react-native";
 
+import stylesSettings from "../../styles/styles";
+
 export default class SettingsPage extends React.Component {
   static navigationOptions = {
-    title: "Configuracion"
+    title: "Configuración"
   };
   render() {
-    return <Text>Pagina de configuracion</Text>;
+    return <Text style={styles.description}>CONFIGURACIONES</Text>;
   }
 }
+
+const styles = stylesSettings;

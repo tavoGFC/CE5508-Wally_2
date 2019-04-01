@@ -1,9 +1,7 @@
 import * as React from "react";
 import {
-  Alert,
   ActivityIndicator,
   Image,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,6 +10,7 @@ import {
 
 //import createFirebaseClient from "../connections/firebase";
 import TrashIcon from "../../../assets/trash.png";
+import stylesLogIn from "../../styles/styles";
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -62,7 +61,6 @@ export default class LogIn extends React.Component {
   };
 
   _onSignUpPressed = () => {
-    Alert.alert("Registrarse");
     this.props.navigation.navigate("SignUp");
   };
 
@@ -71,37 +69,40 @@ export default class LogIn extends React.Component {
       <ActivityIndicator size="large" />
     ) : null;
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Wally</Text>
+      <View style={styles.containerLogIn}>
+        <Text style={styles.titleLogIn}>Wally</Text>
         <Text style={styles.description}>Ingrese su correo y contaseña. </Text>
         <View style={styles.flowRight}>
           <TextInput
-            underlineColorAndroid={"transparent"}
-            style={styles.textInput}
-            placeholder="Correo"
-            value={this.state.searchUser}
-            placeholderTextColor="#656565"
+            autoCorrect={false}
+            keyboardType="email-address"
             onChange={this._onSearchEmailUser}
+            placeholder="Correo"
+            placeholderTextColor="#656565"
+            style={styles.textInput}
+            underlineColorAndroid={"transparent"}
+            value={this.state.searchUser}
           />
           <TextInput
-            underlineColorAndroid={"transparent"}
-            style={styles.textInput}
-            placeholder="******************"
-            value={this.state.searchPassword}
-            placeholderTextColor="#656565"
+            autoCorrect={false}
             onChange={this._onSearchPasswordUser}
+            placeholder="******************"
+            placeholderTextColor="#656565"
             secureTextEntry={true}
+            style={styles.textInput}
+            underlineColorAndroid={"transparent"}
+            value={this.state.searchPassword}
           />
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Home")}
           >
-            <Text style={styles.button}>Ingresar</Text>
+            <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed}>
-            <Text style={styles.button}>Registrarse</Text>
+            <Text style={styles.button}>REGISTRARSE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.description}>{this.state.message}</Text>
+        <Text style={styles.descriptionLogIn}>{this.state.message}</Text>
         <Image source={TrashIcon} style={styles.image} />
         {spinner}
       </View>
@@ -109,61 +110,4 @@ export default class LogIn extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    backgroundColor: "white",
-    marginTop: 5,
-    padding: 10
-  },
-  title: {
-    fontSize: 50,
-    marginBottom: 15,
-    textAlign: "center"
-  },
-  description: {
-    color: "#772a2a",
-    fontSize: 18,
-    marginBottom: 5,
-    textAlign: "center"
-  },
-  flowRight: {
-    alignItems: "center",
-    alignSelf: "stretch",
-    flexDirection: "column"
-  },
-  textInput: {
-    borderColor: "#772a2a",
-    borderRadius: 8,
-    borderWidth: 1,
-    color: "#000000",
-    fontSize: 18,
-    height: 36,
-    justifyContent: "space-between",
-    marginRight: 5,
-    marginTop: 10,
-    padding: 1,
-    paddingBottom: 6,
-    textAlign: "center",
-    width: "50%"
-  },
-  image: {
-    height: "50%",
-    resizeMode: "center",
-    width: "50%"
-  },
-  button: {
-    backgroundColor: "#db256b",
-    borderColor: "white",
-    borderRadius: 30,
-    color: "white",
-    fontSize: 15,
-    fontWeight: "bold",
-    height: 35,
-    marginBottom: 5,
-    marginTop: 5,
-    padding: 8,
-    textAlign: "center",
-    width: 160
-  }
-});
+const styles = stylesLogIn;

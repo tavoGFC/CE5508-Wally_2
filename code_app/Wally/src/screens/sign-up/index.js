@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   ActivityIndicator,
-  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -10,6 +9,7 @@ import {
 } from "react-native";
 
 //import createFirebaseClient from "../connections/firebase";
+import stylesSignUp from "../../styles/styles";
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -76,7 +76,7 @@ export default class SignUp extends React.Component {
   }; */
 
   _submitInformation = () => {
-    if (
+    /* if (
       this.validateName() &&
       this.validateEmail() &&
       this.validatePassword()
@@ -85,7 +85,7 @@ export default class SignUp extends React.Component {
       //this._signUp();
     } else {
       Alert.alert("Los datos ingresados son incorrectos. ");
-    }
+    } */
   };
 
   validateName() {
@@ -121,14 +121,14 @@ export default class SignUp extends React.Component {
       <ActivityIndicator size="large" />
     ) : null;
     return (
-      <View style={styles.container}>
+      <View style={styles.containerSignUp}>
         <Text style={styles.description}>
           Bienvenido. Por favor ingrese datos.
         </Text>
         <View style={styles.flowRight}>
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="Nombre"
             value={this.state.searchNameUser}
             placeholderTextColor="#656565"
@@ -136,7 +136,7 @@ export default class SignUp extends React.Component {
           />
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="Correo"
             value={this.state.searchEmailUser}
             placeholderTextColor="#656565"
@@ -144,7 +144,7 @@ export default class SignUp extends React.Component {
           />
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="Contraseña"
             value={this.state.searchPasswordUser}
             placeholderTextColor="#656565"
@@ -153,7 +153,7 @@ export default class SignUp extends React.Component {
           />
           <TextInput
             underlineColorAndroid={"transparent"}
-            style={styles.searchInput}
+            style={styles.textInput}
             placeholder="Repetir Contraseña "
             value={this.state.searchConfirmPasswordUser}
             placeholderTextColor="#656565"
@@ -161,69 +161,14 @@ export default class SignUp extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity onPress={this._submitInformation}>
-          <Text style={styles.button}>Registrarse</Text>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Home")}
+        >
+          <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    backgroundColor: "white",
-    marginTop: 40,
-    padding: 30
-  },
-  title: {
-    fontSize: 50,
-    marginBottom: 30,
-    textAlign: "center"
-  },
-  description: {
-    color: "#772a2a",
-    fontSize: 18,
-    marginBottom: 5,
-    textAlign: "center"
-  },
-  flowRight: {
-    alignItems: "center",
-    alignSelf: "stretch",
-    flexDirection: "column"
-  },
-  searchInput: {
-    borderColor: "#772a2a",
-    borderRadius: 8,
-    borderWidth: 1,
-    color: "#000000",
-    fontSize: 18,
-    height: 36,
-    justifyContent: "space-between",
-    marginRight: 5,
-    marginTop: 10,
-    padding: 1,
-    paddingBottom: 6,
-    textAlign: "center",
-    width: "60%"
-  },
-  image: {
-    width: "50%",
-    height: "50%",
-    resizeMode: "center"
-  },
-  button: {
-    backgroundColor: "#db256b",
-    borderColor: "white",
-    borderRadius: 30,
-    color: "white",
-    fontSize: 15,
-    fontWeight: "bold",
-    height: 35,
-    marginBottom: 5,
-    marginTop: 5,
-    padding: 8,
-    textAlign: "center",
-    width: 160
-  }
-});
+const styles = stylesSignUp;
