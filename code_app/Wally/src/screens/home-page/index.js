@@ -1,13 +1,8 @@
 import * as React from "react";
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  TouchableHighlight,
-  View
-} from "react-native";
-import IconDumpster from "../../../assets/iconBasurero3.png";
-import IconSettings from "../../../assets/iconConfig.png";
+import { FlatList, Image, TouchableHighlight, View } from "react-native";
+
+import iconDumpster from "../../../assets/iconBasurero3.png";
+import iconSettings from "../../../assets/iconConfig.png";
 import stylesHomePage from "../../styles/styles";
 
 export default class HomePage extends React.Component {
@@ -19,8 +14,8 @@ export default class HomePage extends React.Component {
     super();
     this.state = {
       dataSource: [
-        { key: "One", image: IconDumpster },
-        { key: "Two", image: IconSettings }
+        { key: "One", image: iconDumpster },
+        { key: "Two", image: iconSettings }
       ]
     };
   }

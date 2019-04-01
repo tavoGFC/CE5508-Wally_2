@@ -8,8 +8,9 @@ import {
   View
 } from "react-native";
 
-//import createFirebaseClient from "../connections/firebase";
-import TrashIcon from "../../../assets/trash.png";
+import createFirebaseClient from "../../components/firebase";
+import trashIcon from "../../../assets/trash.png";
+import wallyTitle from "../../../assets/wallyTitle.png";
 import stylesLogIn from "../../styles/styles";
 
 export default class LogIn extends React.Component {
@@ -27,10 +28,10 @@ export default class LogIn extends React.Component {
       response: ""
     };
 
-    //this.firebaseClient = createFirebaseClient();
+    this.firebaseClient = createFirebaseClient();
   }
 
-  /*  _logIn = async () => {
+  _logIn = async () => {
     try {
       await this.firebaseClient
         .auth()
@@ -46,7 +47,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  }; */
+  };
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -103,7 +104,7 @@ export default class LogIn extends React.Component {
           </TouchableOpacity>
         </View>
         <Text style={styles.descriptionLogIn}>{this.state.message}</Text>
-        <Image source={TrashIcon} style={styles.image} />
+        <Image source={trashIcon} style={styles.image} />
         {spinner}
       </View>
     );

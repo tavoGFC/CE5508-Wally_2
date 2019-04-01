@@ -3,21 +3,21 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   /*  general elements for all screens */
   button: {
-    backgroundColor: "#db256b",
+    backgroundColor: "green",
     borderColor: "white",
     borderRadius: 30,
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
     height: 35,
-    marginBottom: 5,
-    marginTop: 5,
+    marginBottom: "3%",
+    marginTop: "3%",
     padding: 8,
     textAlign: "center",
     width: 160
   },
   description: {
-    color: "#772a2a",
+    color: "green",
     fontSize: 18,
     marginBottom: 5,
     textAlign: "center"

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "react-navigation";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
+
 import TabController from "./tab-controller/controller";
 import TabDashboard from "./tab-dashboard/dashboard";
 
@@ -14,7 +15,7 @@ const TabsControl = createBottomTabNavigator(
     },
     Dashboard: {
       screen: TabDashboard,
-      navigationOptions: () => ({ title: "Estadisiticas Wally" })
+      navigationOptions: () => ({ title: "Estadísticas Wally" })
     }
   },
   {
