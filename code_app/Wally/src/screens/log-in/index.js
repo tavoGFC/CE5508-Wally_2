@@ -10,7 +10,6 @@ import {
 
 //import createFirebaseClient from "../../components/firebase";
 import wallyTitle from "../../../assets/wallyTitle.png";
-
 import stylesLogIn from "../../styles/styles";
 
 export default class LogIn extends React.Component {
@@ -89,7 +88,7 @@ export default class LogIn extends React.Component {
           <TextInput
             autoCorrect={false}
             onChange={this._onSearchPasswordUser}
-            placeholder="******************"
+            placeholder="Contraseña"
             placeholderTextColor="#656565"
             secureTextEntry={true}
             style={styles.textInput}
@@ -101,12 +100,12 @@ export default class LogIn extends React.Component {
           >
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this._onSignUpPressed}>
+          <TouchableOpacity onPress={this._onSignUpPressed.bind(this)}>
             <Text style={styles.button}>REGISTRARSE</Text>
           </TouchableOpacity>
         </View>
+        <Text style={styles.descriptionLogIn}> ¿Olvido su contraseña? </Text>
         <Text style={styles.descriptionLogIn}>{this.state.message}</Text>
-        {/* <Image source={wally} style={styles.image} /> */}
         {spinner}
       </View>
     );

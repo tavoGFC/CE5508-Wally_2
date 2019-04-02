@@ -7,6 +7,7 @@ export default class SettingsPage extends React.Component {
   static navigationOptions = {
     title: "Configuración"
   };
+
   render() {
     return <Text style={styles.description}>CONFIGURACIONES</Text>;
   }

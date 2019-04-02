@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: "#772a2a",
     borderRadius: 8,
     color: "#000000",
     fontSize: 18,
@@ -52,18 +51,18 @@ const styles = StyleSheet.create({
   containerLogIn: {
     alignItems: "center",
     backgroundColor: "white",
-    marginTop: 5,
-    padding: 10
+    marginTop: "10%",
+    padding: "10%"
   },
   descriptionLogIn: {
     color: "green",
-    fontSize: 18,
+    fontSize: 14,
     marginTop: 15,
     marginBottom: 5,
     textAlign: "center"
   },
   imageTitle: {
-    height: "20%",
+    height: "35%",
     resizeMode: "contain",
     width: "100%"
   },
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     justifyContent: "center",
-    paddingTop: "35%"
+    paddingTop: "10%"
   },
   imageThumbnail: {
     alignItems: "center",

@@ -1,5 +1,13 @@
 import * as React from "react";
-import { FlatList, Image, TouchableHighlight, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Button,
+  Icon,
+  Image,
+  TouchableHighlight,
+  View
+} from "react-native";
 
 import iconDumpster from "../../../assets/iconBasurero3.png";
 import iconSettings from "../../../assets/iconConfig.png";
@@ -7,8 +15,25 @@ import stylesHomePage from "../../styles/styles";
 
 export default class HomePage extends React.Component {
   static navigationOptions = {
-    title: "Página Principal"
+    title: "Página Principal",
+    headerRight: (
+      <Button
+        onPress={() => Alert.alert("Hola Mundo")}
+        title="LogIn"
+        color="#98FB98"
+      />
+    )
   };
+  /* static navigationOptions = {
+    title: "Página Principal",
+    headerRight: (
+      <Button
+        onPress={navigation.getParam("LogIn")}
+        title="LogIn"
+        color="#98FB98"
+      />
+    )
+  }; */
 
   constructor() {
     super();
@@ -36,6 +61,7 @@ export default class HomePage extends React.Component {
           renderItem={({ item }) => (
             <View style={styles.gridViewColumns}>
               <TouchableHighlight
+                underlayColor={"#98FB98"}
                 onPress={this._selectGridItem.bind(this, item.key)}
               >
                 <Image style={styles.imageThumbnail} source={item.image} />

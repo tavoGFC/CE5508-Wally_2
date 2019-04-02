@@ -7,6 +7,7 @@ export default class TabController extends React.Component {
   static navigationOptions = {
     title: "Controlar Wally"
   };
+
   render() {
     const handlePress = () => false;
     return (

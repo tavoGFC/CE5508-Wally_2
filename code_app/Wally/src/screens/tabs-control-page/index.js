@@ -9,9 +9,7 @@ const TabsControl = createBottomTabNavigator(
   {
     Controller: {
       screen: TabController,
-      navigationOptions: () => ({
-        title: "Controlar Wally"
-      })
+      navigationOptions: () => ({ title: "Controlar Wally" })
     },
     Dashboard: {
       screen: TabDashboard,
