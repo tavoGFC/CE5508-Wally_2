@@ -7,7 +7,7 @@ import {
   View
 } from "react-native";
 
-import createFirebaseClient from "../../components/firebase";
+//import createFirebaseClient from "../../components/firebase";
 import stylesSignUp from "../../styles/styles";
 
 export default class SignUp extends React.Component {
@@ -30,7 +30,7 @@ export default class SignUp extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
-    this.firebaseClient = createFirebaseClient();
+    //this.firebaseClient = createFirebaseClient();
   }
 
   _onSearchNameUser = event => {

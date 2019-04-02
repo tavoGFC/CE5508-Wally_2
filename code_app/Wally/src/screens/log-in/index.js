@@ -8,10 +8,8 @@ import {
   View
 } from "react-native";
 
-import createFirebaseClient from "../../components/firebase";
-import trashIcon from "../../../assets/trash.png";
+//import createFirebaseClient from "../../components/firebase";
 import wallyTitle from "../../../assets/wallyTitle.png";
-import wally from "../../../assets/wally.jpeg";
 
 import stylesLogIn from "../../styles/styles";
 
@@ -30,10 +28,10 @@ export default class LogIn extends React.Component {
       response: ""
     };
 
-    this.firebaseClient = createFirebaseClient();
+    //this.firebaseClient = createFirebaseClient();
   }
 
-  _logIn = async () => {
+  /* _logIn = async () => {
     try {
       await this.firebaseClient
         .auth()
@@ -49,7 +47,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  };
+  }; */
 
   _onSearchEmailUser = event => {
     this.setState({

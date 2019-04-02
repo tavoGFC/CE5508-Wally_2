@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   /*  general elements for all screens */
   button: {
-    backgroundColor: "green",
+    backgroundColor: "#32CD32",
     borderColor: "white",
     borderRadius: 10,
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
-    height: 35,
+    height: 25,
     marginBottom: "3%",
     marginTop: "3%",
     padding: 8,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   gridViewColumns: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
     flex: 1,
     height: 100,
     justifyContent: "center",

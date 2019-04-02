@@ -1,4 +1,9 @@
-import { createAppContainer, createStackNavigator } from "react-navigation";
+import * as React from "react";
+import {
+  createAppContainer,
+  createStackNavigator,
+  Icon
+} from "react-navigation";
 import HomePage from "./src/screens/home-page";
 import LogIn from "./src/screens/log-in";
 import SignUp from "./src/screens/sign-up";
@@ -7,7 +12,19 @@ import TabsControl from "./src/screens/tabs-control-page";
 
 const AppStack = createStackNavigator({
   LogIn: { screen: LogIn },
-  SignUp: { screen: SignUp },
+  SignUp: {
+    screen: SignUp,
+    header: ({ goBack }) => ({
+      left: (
+        <Icon
+          name={"chevron-left"}
+          onPress={() => {
+            goBack();
+          }}
+        />
+      )
+    })
+  },
   Home: { screen: HomePage },
   Settings: { screen: Settings },
   TabsControl: { screen: TabsControl }
