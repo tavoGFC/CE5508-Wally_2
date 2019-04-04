@@ -15,25 +15,8 @@ import stylesHomePage from "../../styles/styles";
 
 export default class HomePage extends React.Component {
   static navigationOptions = {
-    title: "Página Principal",
-    headerRight: (
-      <Button
-        onPress={() => Alert.alert("Hola Mundo")}
-        title="LogIn"
-        color="#98FB98"
-      />
-    )
+    title: "Página Principal"
   };
-  /* static navigationOptions = {
-    title: "Página Principal",
-    headerRight: (
-      <Button
-        onPress={navigation.getParam("LogIn")}
-        title="LogIn"
-        color="#98FB98"
-      />
-    )
-  }; */
 
   constructor() {
     super();

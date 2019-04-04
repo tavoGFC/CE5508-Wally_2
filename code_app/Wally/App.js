@@ -6,10 +6,10 @@ import Settings from "./src/screens/settings-page";
 import TabsControl from "./src/screens/tabs-control-page";
 
 const AppStack = createStackNavigator({
-  LogIn: { screen: LogIn },
-  SignUp: { screen: SignUp },
-  Home: { screen: HomePage },
-  Settings: { screen: Settings },
+  LogIn: { screen: LogIn, navigationOptions: { headerBackTitle: "Atrás" } },
+  SignUp: { screen: SignUp, navigationOptions: { headerBackTitle: "Atrás" } },
+  Home: { screen: HomePage, navigationOptions: { headerBackTitle: "Atrás" } },
+  Settings: { screen: Setting, },
   TabsControl: { screen: TabsControl }
 });
 
