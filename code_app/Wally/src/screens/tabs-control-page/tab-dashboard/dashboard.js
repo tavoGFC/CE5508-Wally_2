@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Text, View } from "react-native";
+import * as React from 'react';
+import { Text, View } from 'react-native';
 
-import stylesTabDashboard from "../../../styles/styles";
+import stylesTabDashboard from '../../../styles/styles';
 
 export default class TabDashboard extends React.Component {
   static navigationOptions = {
-    title: "Estadísticas Wally"
+    title: 'Estadísticas Wally'
   };
 
   render() {

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -6,15 +6,15 @@ import {
   TextInput,
   TouchableOpacity,
   View
-} from "react-native";
+} from 'react-native';
 
-//import createFirebaseClient from "../../components/firebase";
-import wallyTitle from "../../../assets/wallyTitle.png";
-import stylesLogIn from "../../styles/styles";
+//import createFirebaseClient from '../../components/firebase';
+import wallyTitle from '../../../assets/wallyTitle.png';
+import stylesLogIn from '../../styles/styles';
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
-    title: "Basurero Inteligente: Wally"
+    title: 'Basurero Inteligente: Wally'
   };
 
   constructor(props) {
@@ -22,9 +22,9 @@ export default class LogIn extends React.Component {
 
     this.state = {
       isLoading: false,
-      email: "",
-      password: "",
-      response: ""
+      email: '',
+      password: '',
+      response: ''
     };
 
     //this.firebaseClient = createFirebaseClient();
@@ -37,9 +37,9 @@ export default class LogIn extends React.Component {
         .signInWithEmailAndPassword(this.state.email, this.state.password);
 
       this.setState({
-        response: "Bienvenido!"
+        response: 'Bienvenido!'
       });
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate('Home');
     } catch (error) {
       this.setState({
         response: error.toString()
@@ -61,42 +61,39 @@ export default class LogIn extends React.Component {
   };
 
   _onSignUpPressed = () => {
-    this.props.navigation.navigate("SignUp");
+    this.props.navigation.navigate('SignUp');
   };
 
   render() {
     const spinner = this.state.isLoading ? (
-      <ActivityIndicator size="large" />
+      <ActivityIndicator size='large' />
     ) : null;
     return (
       <View style={styles.containerLogIn}>
         <Image source={wallyTitle} style={styles.imageTitle} />
-        {/* <Text style={styles.descriptionLogIn}>
-          Ingrese su correo y contaseña
-        </Text> */}
         <View style={styles.flowRight}>
           <TextInput
             autoCorrect={false}
-            keyboardType="email-address"
+            keyboardType='email-address'
             onChange={this._onSearchEmailUser}
-            placeholder="Correo"
-            placeholderTextColor="#656565"
+            placeholder='Correo'
+            placeholderTextColor='#656565'
             style={styles.textInput}
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             value={this.state.searchUser}
           />
           <TextInput
             autoCorrect={false}
             onChange={this._onSearchPasswordUser}
-            placeholder="Contraseña"
-            placeholderTextColor="#656565"
+            placeholder='Contraseña'
+            placeholderTextColor='#656565'
             secureTextEntry={true}
             style={styles.textInput}
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             value={this.state.searchPassword}
           />
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Home")}
+            onPress={() => this.props.navigation.navigate('Home')}
           >
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>

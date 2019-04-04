@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Text } from "react-native";
+import * as React from 'react';
+import { Text } from 'react-native';
 
-import stylesSettings from "../../styles/styles";
+import stylesSettings from '../../styles/styles';
 
 export default class SettingsPage extends React.Component {
   static navigationOptions = {
-    title: "Configuración"
+    title: 'Configuración'
   };
 
   render() {

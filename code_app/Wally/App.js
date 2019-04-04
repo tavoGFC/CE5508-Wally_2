@@ -9,7 +9,7 @@ const AppStack = createStackNavigator({
   LogIn: { screen: LogIn, navigationOptions: { headerBackTitle: "Atrás" } },
   SignUp: { screen: SignUp, navigationOptions: { headerBackTitle: "Atrás" } },
   Home: { screen: HomePage, navigationOptions: { headerBackTitle: "Atrás" } },
-  Settings: { screen: Setting, },
+  Settings: { screen: Settings, },
   TabsControl: { screen: TabsControl }
 });
 

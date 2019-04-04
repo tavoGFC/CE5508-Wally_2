@@ -1,18 +1,18 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   ActivityIndicator,
   Text,
   TextInput,
   TouchableOpacity,
   View
-} from "react-native";
+} from 'react-native';
 
-//import createFirebaseClient from "../../components/firebase";
-import stylesSignUp from "../../styles/styles";
+//import createFirebaseClient from '../../components/firebase';
+import stylesSignUp from '../../styles/styles';
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
-    title: "Registrese en Wally"
+    title: 'Registrese en Wally'
   };
 
   constructor(props) {
@@ -20,11 +20,11 @@ export default class SignUp extends React.Component {
 
     this.state = {
       isLoading: false,
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      response: ""
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      response: ''
     };
 
     this.validateName = this.validateName.bind(this);
@@ -64,9 +64,9 @@ export default class SignUp extends React.Component {
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
 
       this.setState({
-        response: "Cuenta creada."
+        response: 'Cuenta creada.'
       });
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate('Home');
     } catch (error) {
       this.setState({
         response: error.toString()
@@ -80,15 +80,15 @@ export default class SignUp extends React.Component {
       this.validateEmail() &&
       this.validatePassword()
     ) {
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate('Home');
       //this._signUp();
     } else {
-      Alert.alert("Los datos ingresados son incorrectos. ");
+      Alert.alert('Los datos ingresados son incorrectos. ');
     } */
   };
 
   validateName() {
-    if (this.state.name === "") {
+    if (this.state.name === '') {
       return false;
     } else {
       return true;
@@ -108,7 +108,7 @@ export default class SignUp extends React.Component {
     if (this.state.password !== this.state.confirmPassword) {
       return false;
     }
-    if (this.state.password === "" || this.state.confirmPassword === "") {
+    if (this.state.password === '' || this.state.confirmPassword === '') {
       return false;
     } else {
       return true;
@@ -117,7 +117,7 @@ export default class SignUp extends React.Component {
 
   render() {
     const spinner = this.state.isLoading ? (
-      <ActivityIndicator size="large" />
+      <ActivityIndicator size='large' />
     ) : null;
     return (
       <View style={styles.containerSignUp}>
@@ -126,42 +126,42 @@ export default class SignUp extends React.Component {
         </Text>
         <View style={styles.flowRight}>
           <TextInput
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             style={styles.textInput}
-            placeholder="Nombre"
+            placeholder='Nombre'
             value={this.state.searchNameUser}
-            placeholderTextColor="#656565"
+            placeholderTextColor='#656565'
             onChange={this._onSearchNameUser}
           />
           <TextInput
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             style={styles.textInput}
-            placeholder="Correo"
+            placeholder='Correo'
             value={this.state.searchEmailUser}
-            placeholderTextColor="#656565"
+            placeholderTextColor='#656565'
             onChange={this._onSearchEmailUser}
           />
           <TextInput
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             style={styles.textInput}
-            placeholder="Contraseña"
+            placeholder='Contraseña'
             value={this.state.searchPasswordUser}
-            placeholderTextColor="#656565"
+            placeholderTextColor='#656565'
             onChange={this._onSearchPasswordUser}
             secureTextEntry={true}
           />
           <TextInput
-            underlineColorAndroid={"transparent"}
+            underlineColorAndroid={'transparent'}
             style={styles.textInput}
-            placeholder="Repetir Contraseña "
+            placeholder='Repetir Contraseña '
             value={this.state.searchConfirmPasswordUser}
-            placeholderTextColor="#656565"
+            placeholderTextColor='#656565'
             onChange={this._onSearchConfirmPasswordUser}
             secureTextEntry={true}
           />
         </View>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("Home")}
+          onPress={() => this.props.navigation.navigate('Home')}
         >
           <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>
