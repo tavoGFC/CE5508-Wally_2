@@ -1,12 +1,14 @@
+# -- general --#
+# extras de mac os x
 **/.DS_Store
 .DS_Store
 
+# -- code app --#
 # expo
 code_app/Wally/.expo
 
 # dependencies
 code_app/Wally/node_modules
-
 code_app/Wally/src/components/mqtt.js
 
 # misc
@@ -16,10 +18,13 @@ code_app/Wally/.env.development.local
 code_app/Wally/.env.test.local
 code_app/Wally/.env.production.local
 code_app/Wally/secrets*.*sh
-
-code_app/Wally/src/components/firebase.js
-
 code_app/Wally/npm-debug.log*
 code_app/Wally/yarn-debug.log*
 code_app/Wally/yarn-error.log*
 code_app/Wally/.watchmanconfig
+
+#base de datos
+code_app/Wally/src/components/firebase.js
+
+# -- code server --#
+code_server/node_modules
