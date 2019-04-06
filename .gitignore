@@ -27,4 +27,4 @@ code_app/Wally/.watchmanconfig
 code_app/Wally/src/components/firebase.js
 
 # -- code server --#
-code_server/node_modules
+code_server/server_hapijs/node_modules
