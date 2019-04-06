@@ -1,35 +1,20 @@
 'use strict';
 
 //import Hapi from 'hapi';
-const Hapi = require('hapi');
-const mongoose = require('mongoose');
 //import mongoose from 'mongoose';
+//import statsRoutes from './api/v1/stats';
 
-//import createStudentRoutes from './api/v1/students';
-
-// Create a server with a host and port
 const server = Hapi.server({
   host: 'localhost',
   port: 8000
 });
 
-//createStudentRoutes(server);
+//statsRoutes(server);
 
-// Add the route
-server.route({
-  method: 'GET',
-  path: '/hello',
-  handler: function(request, h) {
-    return '<h1>hello world</h1>';
-  }
-});
-
-// Start the server
 const start = async function() {
   try {
-    //Connect to mongo instance
     mongoose.connect(
-      'mongodb+srv://ranmsy:mongosaurio1@trabajoenclase2-euwjk.mongodb.net/test?retryWrites=true',
+      'mongodb+srv://admin:mongosaurio@trabajoenclase2-euwjk.mongodb.net/test?retryWrites=true',
       { userNewUrlParser: true }
     );
     mongoose.connection.once('open', () => {
