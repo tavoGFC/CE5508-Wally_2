@@ -21,6 +21,8 @@ const start = async function() {
       console.log('connected to database');
     });
 
+    //mqtt
+
     await server.start();
   } catch (err) {
     console.log(err);
