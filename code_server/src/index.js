@@ -1,12 +1,11 @@
 'use strict';
 
-import Hapi from 'hapi';
-import mongoose from 'mongoose';
-import { graphqlHapi, graphiqlHapi } from 'apollo-server-hapi';
+//import Hapi from 'hapi';
+const Hapi = require('hapi');
+const mongoose = require('mongoose');
+//import mongoose from 'mongoose';
 
-import createStudentRoutes from './api/v1/students';
-
-import schema from './grahpql/schema';
+//import createStudentRoutes from './api/v1/students';
 
 // Create a server with a host and port
 const server = Hapi.server({
@@ -14,7 +13,7 @@ const server = Hapi.server({
   port: 8000
 });
 
-createStudentRoutes(server);
+//createStudentRoutes(server);
 
 // Add the route
 server.route({
@@ -35,26 +34,6 @@ const start = async function() {
     );
     mongoose.connection.once('open', () => {
       console.log('connected to database');
-    });
-
-    await server.register({
-      plugin: graphiqlHapi,
-      options: {
-        path: '/graphiql',
-        graphiqlOptions: {
-          endpointURL: '/graphql'
-        },
-        route: { cors: true }
-      }
-    });
-
-    await server.register({
-      plugin: graphqlHapi,
-      options: {
-        path: '/graphql',
-        graphqlOptions: { schema },
-        route: { cors: true }
-      }
     });
 
     await server.start();
