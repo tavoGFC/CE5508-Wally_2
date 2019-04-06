@@ -9,7 +9,7 @@ code_app/Wally/.expo
 
 # dependencies
 code_app/Wally/node_modules
-code_app/Wally/src/components/mqtt.js
+#code_app/Wally/src/components/mqtt.js
 
 # misc
 code_app/Wally/.env
