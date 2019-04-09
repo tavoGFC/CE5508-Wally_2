@@ -1,7 +1,7 @@
 {
   "name": "code_server",
   "version": "1.0.0",
-  "description": "CodeServer MQTT on NodeJS using MongoDB",
+  "description": "CodeServer on NodeJS using HapiJS + MongoDB",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
