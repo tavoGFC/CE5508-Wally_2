@@ -1,4 +1,4 @@
-# CE5508-Proyecto-Casa-Inteligente: Wally (Basusero Inteligente)
+# CE5508-Proyecto-Casa-Inteligente: Wally
 
 El código mostrado acontinuación formar parte de curso: CE5508 - SOA41D: Arquitectura Orientanda a Servicios Aplicada a Sistemas Emergentes.
 
@@ -10,39 +10,62 @@ El proyecto consiste en crear un dispositivo independiente e inteligente utiliza
 
 # Wally
 
-## Getting Started
+Acá sólo se muestra el lado del 'software' del proyecto. Para ver y comprender el lado del 'hardware' por favor contactar a los autores.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Pre-requisitos
 
-### Prerequisites
+Las herramientas usadas para las proyecto fueron:
 
-What things you need to install the software and how to install them
+- NodeJS: Entorno de ejecución servidor.
+- NPM: Manejador de paquetes de NodeJS.
+- HapiJS: 'Framework' respectivo para crear el servidor.
+- React-Native: Biblioteca principal para el desarrollo de la aplicación en Android y iOS.
+- Expo y ExpoCLI: 'Framework': 'Framework' cliente para el desarrolloy simulación de la apliación.
+- MQTT Cloud: Broker 'online' para la conexión entre el dispositvo y el la aplicación. Se requiere una cuenta.
+- MongoAtlas: Versión en la nube de la base de datos NoSQL MongoDB. Se requiere una cuenta.
 
-```
-Give examples
-```
+### Instalación
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+A la hora de crear el proyecto se hicieron los siguientes pasos. Hay un único folder que contiene tres principales carpetas: 'code_app', 'code_server' y 'code_arduino'.
 
 ```
-until finished
+mkdir folderPrincipal
+cd folderPrincipal
+
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Para la aplicación:
 
-## Running the tests
+```
+mkdir code_app
+cd code_app
+expo init Wally
+cd Wally
+npm start o expo start
+```
 
-Explain how to run the automated tests for this system
+Para la el servidor:
+
+```
+cd ..
+mkdir code_server
+cd code_server
+npm init -y (nombrar y configurar el proyecto después en el package.json a su gusto)
+node start
+```
+
+## Ejecutar el Programa
+
+Al descargar este repositorio es importante aclarar que las carpteas 'node_modules' de las carpetas 'code_app' y 'code_server' están siendo ignoradas. Por lo que antes de la ejección es importante ubcicarse en cada folder e instalar los módulos correspondientes. De la siguiente manera:
+
+```
+cd ..
+cd code_server
+npm install o npm i
+cd ..
+cd code_app
+npm install o npm i
+```
 
 ### Break down into end to end tests
 
@@ -83,10 +106,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - **Billie Thompson** - _Initial work_ - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
