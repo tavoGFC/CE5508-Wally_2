@@ -37,7 +37,6 @@ export default function MQTTClient() {
 
   const client = new Paho.MQTT.Client(
     'm16.cloudmqtt.com',
-    //32692,
     32757,
     'web_' + parseInt(Math.random() * 100, 10)
   );

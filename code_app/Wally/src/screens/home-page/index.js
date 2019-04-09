@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  FlatList,
-  Image,
-  TouchableHighlight,
-  View
-} from 'react-native';
+import { FlatList, Image, TouchableHighlight, View } from 'react-native';
 
 import iconDumpster from '../../../assets/iconBasurero3.png';
 import iconSettings from '../../../assets/iconConfig.png';
