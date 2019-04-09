@@ -80,15 +80,15 @@ expo start o npm start
 
 ## Deployment 📦
 
-Para ejecutar ambos programas se necesitan dos terminales apartes ya que ambos programas están corriendo en el localhost de la computadora. Cada puerto puede variar.
+Para ejecutar ambos programas se necesitan dos terminales apartes ya que ambos programas están corriendo en el 'localhost' de la computadora. Cada puerto puede variar.
 
 ## Versión📌
 
-v1: Todo el código mostrado en el repositorio corresponde a la primera versión del proyecto. F
+v1: Todo el código mostrado en el repositorio corresponde a la primera versión del proyecto.
 
-uturas versiones tendrán una estructura, acomodo y guías correspondientes.
+Futuras versiones tendrán una estructura, acomodo y guías correspondientes.
 
 ## Authors ✒️
 
-- **Gustavo Falla** - _Programdor, Diseñador y Constructor_ - [PurpleBooth](https://github.com/tavoGFC)
-- **Randy Martínez** - _Programdor, Diseñador y Constructor_ - [PurpleBooth](https://github.com/randyma01)
+- **Gustavo Fallas** - _Programdor, Diseñador y Constructor_ - [Git Personal](https://github.com/tavoGFC)
+- **Randy Martínez** - _Programdor, Diseñador y Constructor_ - [Git Personal](https://github.com/randyma01)
