@@ -1,10 +1,12 @@
 # CE5508-Proyecto-Casa-Inteligente: Wally (Basusero Inteligente)
 
 El código mostrado acontinuación formar parte de curso: CE5508 - SOA41D: Arquitectura Orientanda a Servicios Aplicada a Sistemas Emergentes.
-The code shown above is part of the course: CE5508 - SOA41D: Service Oriented Architecture Applied to Emerging Systems.
+
+\_ _The code shown above is part of the course: CE5508 - SOA41D: Service Oriented Architecture Applied to Emerging Systems._ \_
 
 El proyecto consiste en crear un dispositivo independiente e inteligente utilizando Internet de las Cosas, que forma parte de un conjunto más grande para crear en total un Casa Autónoma o Inteligente. Este en específico es un Basurero Inteligente denominado **Wally**.
-The project consists of creating an independent and intelligent device using the Internet of Things, which is part of a larger set to create an Autonomous or Intelligent House altogether. This in specific is an Intelligent Waste Bin called **Wally**.
+
+\_ _The project consists of creating an independent and intelligent device using the Internet of Things, which is part of a larger set to create an Autonomous or Intelligent House altogether. This in specific is an Intelligent Waste Bin called **Wally**._ \_
 
 # Wally
 
