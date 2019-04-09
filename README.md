@@ -49,6 +49,8 @@ Para la el servidor:
 cd ..
 mkdir code_server
 cd code_server
+mkdir server_hapijs
+cd server_hapijs
 npm init -y (nombrar y configurar el proyecto después en el package.json)
 node start
 ```
@@ -68,7 +70,7 @@ npm install o npm i
 
 ```
 cd ..
-cd code_server
+cd code_server/server_hapijs
 npm start
 ```
 
