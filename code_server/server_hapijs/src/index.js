@@ -1,24 +1,24 @@
-'use strict';
 
-//import Hapi from 'hapi';
-//import mongoose from 'mongoose';
-//import statsRoutes from './api/v1/stats';
+import Hapi from 'hapi';
+import mongoose from 'mongoose';
+import statsRoutes from './api/v1/stats';
+import usersRoutes from './api/v1/users';
 
 const server = Hapi.server({
-  host: 'localhost',
+  host: '192.168.1.8',
   port: 8000
 });
 
-//statsRoutes(server);
+statsRoutes(server);
+usersRoutes(server);
 
 const start = async function() {
   try {
     mongoose.connect(
-      'mongodb+srv://admin:mongosaurio@trabajoenclase2-euwjk.mongodb.net/test?retryWrites=true',
-      { userNewUrlParser: true }
+      "mongodb+srv://gustavo:admin123@cluster0-mhf6p.mongodb.net/test?retryWrites=true"
     );
-    mongoose.connection.once('open', () => {
-      console.log('connected to database');
+    mongoose.connection.once("open", () => {
+      console.log("connected to database");
     });
 
     //mqtt
