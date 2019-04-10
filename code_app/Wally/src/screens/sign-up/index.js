@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-import createFirebaseClient from '../../components/firebase';
+//import createFirebaseClient from '../../components/firebase';
 import stylesSignUp from '../../styles/styles';
 
 export default class SignUp extends React.Component {
@@ -30,7 +30,7 @@ export default class SignUp extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
-    this.firebaseClient = createFirebaseClient();
+    //this.firebaseClient = createFirebaseClient();
   }
 
   _onSearchNameUser = event => {
@@ -57,7 +57,7 @@ export default class SignUp extends React.Component {
     });
   };
 
-  _signUp = async () => {
+  /* _signUp = async () => {
     try {
       await firebaseClient
         .auth()
@@ -72,7 +72,7 @@ export default class SignUp extends React.Component {
         response: error.toString()
       });
     }
-  };
+  }; */
 
   _submitInformation = () => {
     if (
@@ -161,8 +161,8 @@ export default class SignUp extends React.Component {
           />
         </View>
         <TouchableOpacity
-          //onPress={() => this.props.navigation.navigate('Home')}
-          onPress={this._submitInformation}
+          onPress={() => this.props.navigation.navigate('Home')}
+          //onPress={this._submitInformation}
         >
           <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>

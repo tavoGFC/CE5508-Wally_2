@@ -1,5 +1,5 @@
 # -- general --#
-# extras de mac os x
+# mac os x extras
 **/.DS_Store
 .DS_Store
 
@@ -23,8 +23,12 @@ code_app/Wally/yarn-debug.log*
 code_app/Wally/yarn-error.log*
 code_app/Wally/.watchmanconfig
 
-#base de datos
+#testing
 code_app/Wally/src/components/firebase.js
+code_app/Wally/src/components/testFilwe.js
+
+
+
 
 # -- code server --#
 code_server/server_hapijs/node_modules

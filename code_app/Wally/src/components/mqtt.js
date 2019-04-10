@@ -1,7 +1,7 @@
 import init from 'react_native_mqtt';
 import { AsyncStorage } from 'react-native';
 
-export default function MQTTClient() {
+export default function MQTTClient(command) {
   init({
     size: 10000,
     storageBackend: AsyncStorage,
@@ -11,12 +11,25 @@ export default function MQTTClient() {
     sync: {}
   });
 
+  const client = new Paho.MQTT.Client(
+    'm16.cloudmqtt.com',
+    32757,
+    'web_' + parseInt(Math.random() * 100, 10)
+  );
+
+  const options = {
+    useSSL: true,
+    userName: 'auggeqol',
+    password: 'r5ZWFcewuPZS',
+    onSuccess: onConnect,
+    onFailure: doFail
+  };
+
   function onConnect() {
     console.log('onConnect');
-
     const topic = 'Wally/controll';
     client.subscribe(topic);
-    message = new Paho.MQTT.Message('abrir,0,');
+    message = new Paho.MQTT.Message(command + ',0,');
     message.destinationName = topic;
     client.send(message);
   }
@@ -35,24 +48,8 @@ export default function MQTTClient() {
     console.log('error', e);
   }
 
-  const client = new Paho.MQTT.Client(
-    'm16.cloudmqtt.com',
-    32757,
-    'web_' + parseInt(Math.random() * 100, 10)
-  );
-
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
-
-  const options = {
-    useSSL: true,
-    userName: 'auggeqol',
-    password: 'r5ZWFcewuPZS',
-    onSuccess: onConnect,
-    onFailure: doFail
-  };
-
   client.connect(options);
-
   return client;
 }
