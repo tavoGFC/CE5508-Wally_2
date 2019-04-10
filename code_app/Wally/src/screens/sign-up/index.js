@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Text,
   TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
 
-import createFirebaseClient from '../../components/firebase';
 import stylesSignUp from '../../styles/styles';
 
 export default class SignUp extends React.Component {
@@ -30,7 +30,6 @@ export default class SignUp extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
-    this.firebaseClient = createFirebaseClient();
   }
 
   _onSearchNameUser = event => {
@@ -57,15 +56,23 @@ export default class SignUp extends React.Component {
     });
   };
 
-  _signUp = async () => {
-    try {
-      await firebaseClient
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password);
+  _registerNewUser = () => {
+    const formData = new FormData();
+    formData.append('name', this.state.name);
+    formData.append('email', this.state.email);
+    formData.append('password', this.state.password);
+    fetch('http://192.168.1.8:8000/api/v1/users/insert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      body: formData
+    });
+  }
 
-      this.setState({
-        response: 'Cuenta creada.'
-      });
+  _signUp = () => {
+    try {
+      this._registerNewUser();
       this.props.navigation.navigate('Home');
     } catch (error) {
       this.setState({
@@ -80,7 +87,6 @@ export default class SignUp extends React.Component {
       this.validateEmail() &&
       this.validatePassword()
     ) {
-      this.props.navigation.navigate('Home');
       this._signUp();
     } else {
       Alert.alert('Los datos ingresados son incorrectos. ');
@@ -161,7 +167,6 @@ export default class SignUp extends React.Component {
           />
         </View>
         <TouchableOpacity
-          //onPress={() => this.props.navigation.navigate('Home')}
           onPress={this._submitInformation}
         >
           <Text style={styles.button}>REGISTRARSE</Text>
