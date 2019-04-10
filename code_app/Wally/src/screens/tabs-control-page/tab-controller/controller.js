@@ -10,6 +10,10 @@ export default class TabController extends React.Component {
     title: 'Controlar Wally'
   };
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <View style={styles.containerTabController}>
