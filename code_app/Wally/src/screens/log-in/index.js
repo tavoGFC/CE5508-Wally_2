@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   Text,
   TextInput,
@@ -8,7 +9,6 @@ import {
   View
 } from 'react-native';
 
-//import createFirebaseClient from '../../../components/firebase';
 import wallyTitle from '../../../assets/wallyTitle.png';
 import stylesLogIn from '../../styles/styles';
 
@@ -24,18 +24,20 @@ export default class LogIn extends React.Component {
       isLoading: false,
       email: '',
       password: '',
-      response: ''
+      response: '',
+      user: [],
     };
-
-    //this.firebaseClient = createFirebaseClient();
   }
 
-  /* _logIn = async () => {
+  _logIn = async () => {
     try {
-      await this.firebaseClient
-        .auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password);
+      await this._verifyUser();
 
+      str = JSON.stringify( this.state.user);
+      str1 = JSON.stringify(str);
+      console.log("prueba de parseo: " + str);
+      console.log("prueba de parseo acceder al item 2: " + str1); // Logs output to dev tools console.
+      
       this.setState({
         response: 'Bienvenido!'
       });
@@ -46,7 +48,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  }; */
+  };
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -63,6 +65,17 @@ export default class LogIn extends React.Component {
   _onSignUpPressed = () => {
     this.props.navigation.navigate('SignUp');
   };
+
+  _verifyUser = () => {
+    fetch(`http://192.168.1.8:8000/api/v1/users/findOne?email=${this.state.email}`)
+      .then(response => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({
+          user: responseJson
+        });
+      });
+  }
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -93,8 +106,8 @@ export default class LogIn extends React.Component {
             value={this.state.searchPassword}
           />
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Home')}
-            //onPress={this._logIn}
+            //onPress={() => this.props.navigation.navigate('Home')}
+            onPress={this._logIn}
           >
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
@@ -103,7 +116,7 @@ export default class LogIn extends React.Component {
           </TouchableOpacity>
         </View>
         <Text style={styles.descriptionLogIn}> ¿Olvido su contraseña? </Text>
-        <Text style={styles.descriptionLogIn}>{this.state.message}</Text>
+        <Text style={styles.descriptionLogIn}>{this.state.user.email}</Text>
         {spinner}
       </View>
     );
