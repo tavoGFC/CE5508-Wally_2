@@ -210,17 +210,17 @@ void loop()
   }
 
   //-- Reading WiFi Message --//
-  if (wifiMessage == "abrir") // open top
+  if (wifiMessage == "open") // open top
   {
     openTop();
     wifiMessage = "";
   }
-  else if (wifiMessage == "cerrar") // close top
+  else if (wifiMessage == "close") // close top
   {
     closeTop();
     wifiMessage = "";
   }
-  else if (wifiMessage == "comresionar") //move compressor
+  else if (wifiMessage == "compress") //move compressor
   {
     controlCompressor();
     wifiMessage = "";
