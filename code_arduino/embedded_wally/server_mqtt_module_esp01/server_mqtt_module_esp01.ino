@@ -6,10 +6,10 @@ const char *ssid = "LG K5";        //"HTC Portable";
 const char *password = "Alonso11"; //"AlonsoFC11";
 
 /*---- Server MQTT ----*/
-const char *mqtt_server = "m16.cloudmqtt.com";
-const int port_mqtt_server = 12757;
-const char *user_mqtt_server = "auggeqol";
-const char *password_mqtt_server = "r5ZWFcewuPZS";
+const char *mqtt_server = "m24.cloudmqtt.com";
+const int port_mqtt_server = 14805;
+const char *user_mqtt_server = "ydgftwoz";
+const char *password_mqtt_server = "D1hzagk3oj49";
 const char *device_id = "esp8266-ardu";
 
 const char *topicSub = "Wally/controll";
@@ -42,17 +42,17 @@ void callback(char *topic, byte *payload, unsigned int length)
     {
         message += (char)payload[i];
     }
-    if (message == "abrir")
+    if (message == "open")
     {
-        Serial.write("abrirTapa");
+        Serial.write("open");
     }
-    else if (message == "cerrar")
+    else if (message == "close")
     {
-        Serial.write("cerrarTapa");
+        Serial.write("close");
     }
-    else if (message == "presionar")
+    else if (message == "compress")
     {
-        Serial.write("comprimirBasura");
+        Serial.write("compress");
     }
 }
 
@@ -74,7 +74,7 @@ void setup_wifi()
         //Serial.print("."); //Serial.print(WiFi.status());
         delay(100);
     }
-/*
+    /*
     Serial.println("");
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
@@ -86,16 +86,16 @@ void reconnect()
 {
     while (!client.connected())
     {
-  //      Serial.print("Attempting MQTT connection...");
+        //      Serial.print("Attempting MQTT connection...");
 
         if (client.connect(device_id, user_mqtt_server, password_mqtt_server))
         {
-    //        Serial.println("connected");
+            //        Serial.println("connected");
             client.subscribe(topicSub);
         }
         else
         {
-      /*      Serial.print("failed, rc=");
+            /*      Serial.print("failed, rc=");
             Serial.print(client.state());
             Serial.println(" try again in 5 seconds");
             */

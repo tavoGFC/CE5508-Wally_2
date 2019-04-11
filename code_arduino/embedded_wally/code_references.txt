@@ -1,0 +1,19 @@
+/*
+ * Estudiantes: Randy Martínez y Gustavo Fallas
+ 
+ * Carnets: 2014047395 y 2014035394
+
+ * Proyecto #1: IoT - Basurero Inteligente
+
+ * Descripción: El siguiente código parte del módulo movimiento 
+   autónomo del la tapa del basurero, de manera que se accione 
+   por medio del sensor.
+
+ * Nota: Las referencias respectivas de algunas partes de este código
+   se pueden encontrar en el archivo referencias_codigo.txt que se 
+   encuentran en esta misma carpeta. 
+ 
+ * Aclaración: El código fue ajustado y modificado por Randy y Gustavo
+   por las necesidades del proyecto respectivamente.
+ 
+*/

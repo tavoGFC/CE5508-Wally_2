@@ -2,6 +2,8 @@
 # mac os x extras
 **/.DS_Store
 .DS_Store
+**/.bin
+.bin
 
 # -- code app --#
 # expo
