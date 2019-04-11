@@ -12,7 +12,7 @@
 #include "HX711.h"
 #include <SoftwareSerial.h>
 
-//-DC Motor-//
+//-- DC Motor --//
 #define dcOne_Pin 8
 #define dcTwo_Pin 11
 #define durationCompressor 1000
@@ -20,19 +20,19 @@
 int pwm1;
 int pwm2;
 
-//-Radar Sensor-//
+//-- Radar Sensor --//
 #define echo_Pin 13
 #define trigger_Pin 12
 #define Max_Distance 400
 bool state;
 
-//-Servo Motors-//
+//-- Servo Motors --//
 Servo servoRight;
 Servo servoLeft;
 #define servoRight_Pin 10
 #define servoLeft_Pin 9
 
-//-Weight Sensors-//
+//-- Weight Sensors --//
 unsigned long currentMillis = 0;
 HX711 scaleRight;
 HX711 scaleLeft;
@@ -42,7 +42,7 @@ HX711 scaleLeft;
 #define leftClk_Pin 6
 float calibrationFactor = -92050.00;
 
-//-WiFi Module-//
+//-- WiFi Module --//
 #define RX_Pin 2
 #define TX_Pin 3
 SoftwareSerial wifi(RX_Pin, TX_Pin);
@@ -199,17 +199,17 @@ void loop()
   {
     wifiMessage = wifi.readString();
   }
-  //-Radar Sensor-//
+  //-- Radar Sensor --//
   radar();
 
-  //-Weight Sensors-//
+  //-- Weight Sensors --//
   if (millis() > (currentMillis + 10000))
   {
     currentMillis = millis();
     getWeight();
   }
 
-  //-Reading WiFi Message-//
+  //-- Reading WiFi Message --//
   if (wifiMessage == "abrir") // open top
   {
     openTop();
