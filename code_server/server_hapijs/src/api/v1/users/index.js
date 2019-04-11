@@ -15,7 +15,7 @@ function usersRoutes(server) {
             handler: function (request, reply) {
                 if (request.query) {
                     const { email } = request.query;
-                    return WallyUsers.find({ email });
+                    return WallyUsers.find({ email}).select('password');
                 }
                 return WallyUsers.find();
             }

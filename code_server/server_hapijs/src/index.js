@@ -5,7 +5,7 @@ import statsRoutes from './api/v1/stats';
 import usersRoutes from './api/v1/users';
 
 const server = Hapi.server({
-  host: '192.168.1.8',
+  host: '192.168.42.148',
   port: 8000
 });
 

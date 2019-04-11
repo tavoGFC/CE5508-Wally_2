@@ -14,7 +14,7 @@ export default class TabDashboard extends React.Component {
   };
 
   componentDidMount() {
-    return fetch('http://192.168.1.8:8000/api/v1/allStats')
+    return fetch('http://192.168.42.148:8000/api/v1/allStats')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -47,8 +47,12 @@ export default class TabDashboard extends React.Component {
       <View style={{ flex: 1, paddingTop: 20 }}>
         <FlatList
           data={this.state.dataSource}
-          renderItem={({ item }) => <Text style={styles.description}> {item.Month}: {item.leftScale} kg de basura, {item.rightScale} kg de material reciclable.</Text>}
-          keyExtractor={({ id }, index) => id}
+          keyExtractor={(item, index) => 'key'+index}
+          renderItem={({ item }) => (
+            <Text style={styles.description}> 
+              {item.Month}: {item.leftScale} kg de basura, {item.rightScale} kg de material reciclable.
+            </Text>
+          )}
         />
       </View>
     );
