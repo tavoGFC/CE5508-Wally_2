@@ -24,24 +24,19 @@ export default class LogIn extends React.Component {
       isLoading: false,
       email: '',
       password: '',
-      response: '',
-      user: [],
+      response: ''
     };
   }
 
-  _logIn = async () => {
+  _logIn = () => {
     try {
-      await this._verifyUser();
-
-      str = JSON.stringify( this.state.user);
-      str1 = JSON.stringify(str);
-      console.log("prueba de parseo: " + str);
-      console.log("prueba de parseo acceder al item 2: " + str1); // Logs output to dev tools console.
-      
+      this._verifyUser();
       this.setState({
         response: 'Bienvenido!'
       });
-      this.props.navigation.navigate('Home');
+      if (this.state.password === this.state.userPassword) {
+        this.props.navigation.navigate('Home');
+      }
     } catch (error) {
       this.setState({
         response: error.toString()
@@ -66,15 +61,20 @@ export default class LogIn extends React.Component {
     this.props.navigation.navigate('SignUp');
   };
 
-  _verifyUser = () => {
-    fetch(`http://192.168.1.8:8000/api/v1/users/findOne?email=${this.state.email}`)
-      .then(response => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        this.setState({
-          user: responseJson
-        });
-      });
+  _verifyUser = async () => {
+    try {
+      await fetch(`http://192.168.42.148:8000/api/v1/users/findOne?email=${this.state.email}`)
+        .then(response => response.json())
+        .then((responseJson) => {
+          const parseResponse = JSON.stringify(responseJson);
+          this.setState({
+            userPassword: JSON.parse(parseResponse.substring(1, parseResponse.length - 1)).password
+          });
+      })
+    }
+    catch (error) {
+      console.error(error);
+    };
   }
 
   render() {
@@ -116,7 +116,7 @@ export default class LogIn extends React.Component {
           </TouchableOpacity>
         </View>
         <Text style={styles.descriptionLogIn}> ¿Olvido su contraseña? </Text>
-        <Text style={styles.descriptionLogIn}>{this.state.user.email}</Text>
+        <Text style={styles.descriptionLogIn}>{this.state.response}</Text>
         {spinner}
       </View>
     );
