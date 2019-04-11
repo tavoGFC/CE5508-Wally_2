@@ -33,7 +33,7 @@ export default class TabController extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            MQTTClient('presionar');
+            MQTTClient('comresionar');
           }}
         >
           <Text style={styles.button}>Comprimir Basura</Text>
