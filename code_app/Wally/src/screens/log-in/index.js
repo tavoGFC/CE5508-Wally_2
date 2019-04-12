@@ -32,7 +32,7 @@ export default class LogIn extends React.Component {
     try {
       this._verifyUser();
       this.setState({
-        response: 'Bienvenido!'
+        response: '¡Bienvenido!'
       });
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
@@ -63,19 +63,24 @@ export default class LogIn extends React.Component {
 
   _verifyUser = async () => {
     try {
-      await fetch(`http://192.168.42.148:8000/api/v1/users/findOne?email=${this.state.email}`)
+      await fetch(
+        `http://10.10.10.228:8000/api/v1/users/findOne?email=${
+          this.state.email
+        }`
+      )
         .then(response => response.json())
-        .then((responseJson) => {
+        .then(responseJson => {
           const parseResponse = JSON.stringify(responseJson);
           this.setState({
-            userPassword: JSON.parse(parseResponse.substring(1, parseResponse.length - 1)).password
+            userPassword: JSON.parse(
+              parseResponse.substring(1, parseResponse.length - 1)
+            ).password
           });
-      })
-    }
-    catch (error) {
+        });
+    } catch (error) {
       console.error(error);
-    };
-  }
+    }
+  };
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -105,17 +110,13 @@ export default class LogIn extends React.Component {
             underlineColorAndroid={'transparent'}
             value={this.state.searchPassword}
           />
-          <TouchableOpacity
-            //onPress={() => this.props.navigation.navigate('Home')}
-            onPress={this._logIn}
-          >
+          <TouchableOpacity onPress={this._logIn}>
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed.bind(this)}>
             <Text style={styles.button}>REGISTRARSE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.descriptionLogIn}> ¿Olvido su contraseña? </Text>
         <Text style={styles.descriptionLogIn}>{this.state.response}</Text>
         {spinner}
       </View>

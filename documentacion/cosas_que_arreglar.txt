@@ -1,0 +1,24 @@
+- si se registra un usuario y entra el home, al darle atras
+vuelve a la ventana de registrarse en lugar de la pagina del login
+
+- existe la falla de que pueden registrarse multiples cuenta
+con el mismo correo
+
+- hay que darle dos veces al login para entrar, con una deberia
+baster
+
+
+- encriptar la clave
+
+- no se verifica que el correo realmente existe, solo que tenga 
+el formato de un correo como tal
+
+- la contraseña no esta siendo encriptada al enviarse a la base
+
+- si se ejecuta el ingresar sin datos hay un error
+
+- si se ejecta el ingresar con un dato en mayuscula en el correo hay error
+
+- obtener los ultimos datos en las estadisticas
+
+- hacer que se refresquen los datos de manera automatica

@@ -10,47 +10,44 @@ export default class TabDashboard extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isLoading: true }
-  };
+    this.state = { isLoading: true };
+  }
 
   componentDidMount() {
-    return fetch('http://192.168.42.148:8000/api/v1/allStats')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson,
-        }, function () {
-
-        });
-
+    return fetch('http://10.10.10.228:8000/api/v1/stats/allStats')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            dataSource: responseJson
+          },
+          function() {}
+        );
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }
 
-
-
   render() {
-
     if (this.state.isLoading) {
       return (
         <View style={{ flex: 1, padding: 20 }}>
           <ActivityIndicator />
         </View>
-      )
+      );
     }
 
     return (
       <View style={{ flex: 1, paddingTop: 20 }}>
         <FlatList
           data={this.state.dataSource}
-          keyExtractor={(item, index) => 'key'+index}
+          keyExtractor={(item, index) => 'key' + index}
           renderItem={({ item }) => (
-            <Text style={styles.description}> 
-              {item.Month}: {item.leftScale} kg de basura, {item.rightScale} kg de material reciclable.
+            <Text style={styles.description}>
+              {item.Month}: {item.leftScale} kg de basura, {item.rightScale} kg
+              de material reciclable.
             </Text>
           )}
         />

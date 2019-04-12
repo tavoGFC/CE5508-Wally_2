@@ -149,7 +149,7 @@ void radar()
   Serial.println(String(distance) + " cm");
   if (distance > Max_Distance)
   {
-    Serial.println("....fuera de rango...");
+    Serial.println("...out of range...");
   }
   else if (distance < 20 && !state)
   {
