@@ -1,16 +1,8 @@
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
-
+import { ActivityIndicator, Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import wallyTitle from '../../../assets/wallyTitle.png';
 import stylesLogIn from '../../styles/styles';
+
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -23,33 +15,12 @@ export default class LogIn extends React.Component {
     this.state = {
       isLoading: false,
       email: '',
-      password: '',
-      response: ''
+      password: ''
     };
-
+    
     this.validateData = this.validateData.bind(this);
-    this.wait = this.wait.bind(this);
   }
 
-  /* _logIn = () => {
-    try {
-      this._verifyUser();
-      this.setState({
-        response: '¡Bienvenido!'
-      });
-      //wait(7000);
-      if (this.state.password === this.state.userPassword) {
-        this.props.navigation.navigate('Home');
-      } else {
-        Alert.alert('Correo o contraseñas son incorrectos, intente de nuevo');
-      }
-    } catch (error) {
-      this.setState({
-        response: error.toString()
-      });
-      console.info(this.state.response);
-    }
-  }; */
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -88,27 +59,28 @@ export default class LogIn extends React.Component {
       return true;
     }
   }
+
   _logIn = async () => {
     try {
       await fetch(
-        `http://10.10.10.228:8000/api/v1/users/findOne?email=${
-          this.state.email
+        `http://192.168.1.8:8000/api/v1/users/findOne?email=${
+        this.state.email
         }`
       )
-        .then(response => response.json())
-        .then(responseJson => {
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson != '') {
           const parseResponse = JSON.stringify(responseJson);
-          this.setState({
-            userPassword: JSON.parse(
-              parseResponse.substring(1, parseResponse.length - 1)
-            ).password
-          });
-        });
-
-      this.setState({
-        response: '¡Bienvenido!'
+          if (parseResponse != "") {
+            this.setState({
+              userPassword: JSON.parse(
+                parseResponse.substring(1, parseResponse.length - 1)
+              ).password
+            });
+          }
+        }
       });
-      //wait(7000);
+      
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
       } else {
@@ -119,13 +91,6 @@ export default class LogIn extends React.Component {
     }
   };
 
-  wait(ms) {
-    var start = new Date().getTime();
-    var end = start;
-    while (end < start + ms) {
-      end = new Date().getTime();
-    }
-  }
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -163,7 +128,6 @@ export default class LogIn extends React.Component {
             <Text style={styles.button}>REGISTRARSE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.descriptionLogIn}>{this.state.response}</Text>
         {spinner}
       </View>
     );

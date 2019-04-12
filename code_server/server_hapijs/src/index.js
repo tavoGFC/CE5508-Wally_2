@@ -4,14 +4,16 @@ import statsRoutes from './api/v1/stats';
 import usersRoutes from './api/v1/users';
 
 const server = Hapi.server({
-  host: '10.10.10.228',
+
+  host: '192.168.1.8', //'192.168.42.148',
+  //host: '10.10.10.228',
   port: 8000
 });
 
 statsRoutes(server);
 usersRoutes(server);
 
-const start = async function() {
+const start = async function () {
   try {
     mongoose.connect(
       'mongodb+srv://gustavo:admin123@cluster0-mhf6p.mongodb.net/test?retryWrites=true'
@@ -20,8 +22,6 @@ const start = async function() {
     mongoose.connection.once('open', () => {
       console.log('connected to database');
     });
-
-    //mqtt
 
     await server.start();
   } catch (err) {
