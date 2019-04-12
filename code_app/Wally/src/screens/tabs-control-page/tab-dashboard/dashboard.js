@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import stylesTabDashboard from '../../../styles/styles';
+import { FlatList, ActivityIndicator, Text, View } from 'react-native';
 
+import stylesTabDashboard from '../../../styles/styles';
 
 export default class TabDashboard extends React.Component {
   static navigationOptions = {
@@ -14,7 +14,7 @@ export default class TabDashboard extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://10.10.10.228:8000/api/v1/stats/lastestStats')
+    return fetch('http://10.10.10.228:8000/api/v1/stats/latestStats')
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -22,7 +22,7 @@ export default class TabDashboard extends React.Component {
             isLoading: false,
             dataSource: responseJson
           },
-          function () { }
+          function() {}
         );
       })
       .catch(error => {
@@ -37,22 +37,18 @@ export default class TabDashboard extends React.Component {
           <ActivityIndicator />
         </View>
       );
+    } else {
+      const dataWally = this.state.dataSource.map((val, key) => {
+        return (
+          <View key={key} style={styles.description}>
+            <Text>Mes: {val.Month} </Text>
+            <Text>{val.leftScale} kg de basura </Text>
+            <Text>{val.leftScale} kg de material reciclable </Text>
+          </View>
+        );
+      });
     }
-
-    return (
-      <View style={{ flex: 1, paddingTop: 20 }}>
-        <FlatList
-          data={this.state.dataSource}
-          keyExtractor={(item, index) => 'key' + index}
-          renderItem={({ item }) => (
-            <Text style={styles.description}>
-              {item.Month}: {item.leftScale} kg de basura, {item.rightScale} kg
-              de material reciclable.
-            </Text>
-          )}
-        />
-      </View>
-    );
+    return <View style={styles.containerDashboard}>{dataWally}</View>;
   }
 }
 

@@ -1,117 +1,123 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   /*  general elements for all screens */
   button: {
-    backgroundColor: "#32CD32",
-    borderColor: "white",
+    backgroundColor: '#32CD32',
+    borderColor: 'white',
     borderRadius: 10,
-    color: "white",
+    color: 'white',
     fontSize: 15,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     height: 25,
-    marginBottom: "3%",
-    marginTop: "3%",
+    marginBottom: '3%',
+    marginTop: '3%',
     padding: 8,
-    textAlign: "center",
+    textAlign: 'center',
     width: 160
   },
   description: {
-    color: "green",
+    color: 'green',
     fontSize: 18,
     marginBottom: 5,
-    textAlign: "center"
+    textAlign: 'center'
   },
   flowRight: {
-    alignItems: "center",
-    alignSelf: "stretch",
-    flexDirection: "column"
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    flexDirection: 'column'
   },
   image: {
-    height: "30%",
-    resizeMode: "contain",
-    width: "60%"
+    height: '30%',
+    resizeMode: 'contain',
+    width: '60%'
   },
   textInput: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
-    color: "#000000",
+    color: '#000000',
     fontSize: 18,
     height: 36,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     marginRight: 5,
     marginTop: 10,
     padding: 1,
     paddingBottom: 6,
-    textAlign: "center",
-    width: "60%"
+    textAlign: 'center',
+    width: '60%'
   },
   /*  specific elements for certain screens */
   // logIn screen
   containerLogIn: {
-    alignItems: "center",
-    backgroundColor: "white",
-    marginTop: "10%",
-    padding: "10%"
+    alignItems: 'center',
+    backgroundColor: 'white',
+    marginTop: '10%',
+    padding: '10%'
   },
   descriptionLogIn: {
-    color: "green",
+    color: 'green',
     fontSize: 14,
     marginTop: 15,
     marginBottom: 5,
-    textAlign: "center"
+    textAlign: 'center'
   },
   imageTitle: {
-    height: "35%",
-    resizeMode: "contain",
-    width: "100%"
+    height: '35%',
+    resizeMode: 'contain',
+    width: '100%'
   },
   titleLogIn: {
     fontSize: 50,
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: 'center'
   },
   // signUp screen
   containerSignUp: {
-    alignItems: "center",
-    backgroundColor: "white",
+    alignItems: 'center',
+    backgroundColor: 'white',
     marginTop: 40,
     padding: 30
   },
   titleSignUp: {
     fontSize: 50,
     marginBottom: 30,
-    textAlign: "center"
+    textAlign: 'center'
   },
   // homePage screen
   mainContainer: {
     flex: 1,
-    justifyContent: "center",
-    paddingTop: "10%"
+    justifyContent: 'center',
+    paddingTop: '10%'
   },
   imageThumbnail: {
-    alignItems: "center",
+    alignItems: 'center',
     height: 100,
-    resizeMode: "contain",
+    resizeMode: 'contain',
     width: 100
   },
   gridViewColumns: {
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
     flex: 1,
     height: 100,
-    justifyContent: "center",
+    justifyContent: 'center',
     margin: 2
   },
   // controller tab screen
   containerTabController: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 65,
     padding: 30
   },
+  descriptionWarningController: {
+    color: 'black',
+    fontSize: 18,
+    marginBottom: 10,
+    textAlign: 'center'
+  },
   // dashboard tab screen
   containerDashboard: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 65,
     padding: 30
   }

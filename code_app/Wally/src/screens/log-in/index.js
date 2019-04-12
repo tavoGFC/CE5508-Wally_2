@@ -17,10 +17,10 @@ export default class LogIn extends React.Component {
       email: '',
       password: ''
     };
-
+    
     this.validateData = this.validateData.bind(this);
-    this.wait = this.wait.bind(this);
   }
+
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -67,20 +67,20 @@ export default class LogIn extends React.Component {
         this.state.email
         }`
       )
-        .then(response => response.json())
-        .then(responseJson => {
-          if (responseJson != '') {
-            const parseResponse = JSON.stringify(responseJson);
-            if (parseResponse != "") {
-              this.setState({
-                userPassword: JSON.parse(
-                  parseResponse.substring(1, parseResponse.length - 1)
-                ).password
-              });
-            }
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson != '') {
+          const parseResponse = JSON.stringify(responseJson);
+          if (parseResponse != "") {
+            this.setState({
+              userPassword: JSON.parse(
+                parseResponse.substring(1, parseResponse.length - 1)
+              ).password
+            });
           }
-        });
-
+        }
+      });
+      
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
       } else {
@@ -91,13 +91,6 @@ export default class LogIn extends React.Component {
     }
   };
 
-  wait(ms) {
-    var start = new Date().getTime();
-    var end = start;
-    while (end < start + ms) {
-      end = new Date().getTime();
-    }
-  }
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -108,6 +101,7 @@ export default class LogIn extends React.Component {
         <Image source={wallyTitle} style={styles.imageTitle} />
         <View style={styles.flowRight}>
           <TextInput
+            autoCapitalize={'none'}
             autoCorrect={false}
             keyboardType='email-address'
             onChange={this._onSearchEmailUser}
