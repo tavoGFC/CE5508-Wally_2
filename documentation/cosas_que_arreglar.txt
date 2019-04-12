@@ -15,9 +15,11 @@ el formato de un correo como tal
 
 - la contraseña no esta siendo encriptada al enviarse a la base
 
-- si se ejecuta el ingresar sin datos hay un error
+- si se ejecuta el ingresar sin datos hay un error CORREGIDO
 
-- si se ejecta el ingresar con un dato en mayuscula en el correo hay error
+- si se ejecta el ingresar con un dato en mayuscula en el correo hay error CORREGIDO
+
+- si el correo no existe en la basee hay error de JSON PARSE error: Unexpected EOF. ni idea
 
 - obtener los ultimos datos en las estadisticas
 

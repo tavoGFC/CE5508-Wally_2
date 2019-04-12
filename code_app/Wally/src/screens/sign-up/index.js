@@ -89,7 +89,7 @@ export default class SignUp extends React.Component {
     ) {
       this._signUp();
     } else {
-      Alert.alert('Los datos ingresados son incorrectos. ');
+      Alert.alert('Los datos ingresados son incorrectos.');
     }
   };
 

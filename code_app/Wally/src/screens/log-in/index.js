@@ -26,6 +26,8 @@ export default class LogIn extends React.Component {
       password: '',
       response: ''
     };
+
+    this.validateData = this.validateData.bind(this);
   }
 
   _logIn = () => {
@@ -36,6 +38,8 @@ export default class LogIn extends React.Component {
       });
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
+      } else {
+        Alert.alert('Correo o contraseñas son incorrectos, intente de nuevo');
       }
     } catch (error) {
       this.setState({
@@ -61,6 +65,27 @@ export default class LogIn extends React.Component {
     this.props.navigation.navigate('SignUp');
   };
 
+  _submitData = () => {
+    if (this.validateData()) {
+      this._logIn();
+    } else {
+      Alert.alert(
+        'Por favor ingrese un correo y una contraseña ya registrados.'
+      );
+    }
+  };
+
+  validateData() {
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (
+      this.state.email === '' ||
+      (reg.test(this.state.email) === false && this.state.password === '')
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   _verifyUser = async () => {
     try {
       await fetch(
@@ -110,7 +135,7 @@ export default class LogIn extends React.Component {
             underlineColorAndroid={'transparent'}
             value={this.state.searchPassword}
           />
-          <TouchableOpacity onPress={this._logIn}>
+          <TouchableOpacity onPress={this._submitData}>
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed.bind(this)}>
