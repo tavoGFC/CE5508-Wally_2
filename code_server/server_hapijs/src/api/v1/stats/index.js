@@ -17,6 +17,13 @@ function statsRoutes(server) {
       }
     },
     {
+      method: 'GET',
+      path: '/api/v1/stats/lastestStats',
+      handler: function (request, reply) {
+        return WallyStats.findOne().sort({ Month: -1 });
+      }
+    },
+    {
       method: 'POST',
       path: '/api/v1/stats/insert',
       handler: function (request, reply) {

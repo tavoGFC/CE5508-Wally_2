@@ -1,16 +1,8 @@
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
-
+import { ActivityIndicator, Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import wallyTitle from '../../../assets/wallyTitle.png';
 import stylesLogIn from '../../styles/styles';
+
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -23,27 +15,12 @@ export default class LogIn extends React.Component {
     this.state = {
       isLoading: false,
       email: '',
-      password: '',
-      response: ''
+      password: ''
     };
-  }
 
-  _logIn = () => {
-    try {
-      this._verifyUser();
-      this.setState({
-        response: 'Bienvenido!'
-      });
-      if (this.state.password === this.state.userPassword) {
-        this.props.navigation.navigate('Home');
-      }
-    } catch (error) {
-      this.setState({
-        response: error.toString()
-      });
-      console.info(this.state.response);
-    }
-  };
+    this.validateData = this.validateData.bind(this);
+    this.wait = this.wait.bind(this);
+  }
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -61,20 +38,65 @@ export default class LogIn extends React.Component {
     this.props.navigation.navigate('SignUp');
   };
 
-  _verifyUser = async () => {
-    try {
-      await fetch(`http://192.168.42.148:8000/api/v1/users/findOne?email=${this.state.email}`)
-        .then(response => response.json())
-        .then((responseJson) => {
-          const parseResponse = JSON.stringify(responseJson);
-          this.setState({
-            userPassword: JSON.parse(parseResponse.substring(1, parseResponse.length - 1)).password
-          });
-      })
+  _submitData = () => {
+    if (this.validateData()) {
+      this._logIn();
+    } else {
+      Alert.alert(
+        'Por favor ingrese un correo y una contraseña ya registrados.'
+      );
     }
-    catch (error) {
+  };
+
+  validateData() {
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (
+      this.state.email === '' ||
+      (reg.test(this.state.email) === false && this.state.password === '')
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  _logIn = async () => {
+    try {
+      await fetch(
+        `http://192.168.1.8:8000/api/v1/users/findOne?email=${
+        this.state.email
+        }`
+      )
+        .then(response => response.json())
+        .then(responseJson => {
+          if (responseJson != '') {
+            const parseResponse = JSON.stringify(responseJson);
+            if (parseResponse != "") {
+              this.setState({
+                userPassword: JSON.parse(
+                  parseResponse.substring(1, parseResponse.length - 1)
+                ).password
+              });
+            }
+          }
+        });
+
+      if (this.state.password === this.state.userPassword) {
+        this.props.navigation.navigate('Home');
+      } else {
+        Alert.alert('Correo o contraseñas son incorrectos, intente de nuevo.');
+      }
+    } catch (error) {
       console.error(error);
-    };
+    }
+  };
+
+  wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
   }
 
   render() {
@@ -105,18 +127,13 @@ export default class LogIn extends React.Component {
             underlineColorAndroid={'transparent'}
             value={this.state.searchPassword}
           />
-          <TouchableOpacity
-            //onPress={() => this.props.navigation.navigate('Home')}
-            onPress={this._logIn}
-          >
+          <TouchableOpacity onPress={this._submitData}>
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed.bind(this)}>
             <Text style={styles.button}>REGISTRARSE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.descriptionLogIn}> ¿Olvido su contraseña? </Text>
-        <Text style={styles.descriptionLogIn}>{this.state.response}</Text>
         {spinner}
       </View>
     );

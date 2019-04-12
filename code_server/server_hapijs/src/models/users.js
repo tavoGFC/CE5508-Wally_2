@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 
 const WallyUsersSchema = new Schema({
   name: String,
-  email: String,
+  email: {
+    type: String,
+    unique: true,
+  },
   password: String
 });
 
 export default mongoose.model('WallyUsers', WallyUsersSchema);
-  

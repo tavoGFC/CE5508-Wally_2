@@ -1,9 +1,20 @@
+/*
+ * Nota: Ciertas partes de este código fueron tomadas de códigos funcionales
+ * encontrados en internet a la hora de la investigación de los diferentes 
+ * módulos electrónicos que componen el dispositvo. Las referencias respectivas
+ * se pueden encontrar en el documento code_refereneces.txt que se encuentran 
+ * en esta misma carpeta. 
+ 
+ - Randy Martínez y Gustavo Fallas. 
+*/
+
+#include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
 /*---- WiFI ----*/
-const char *ssid = "LG K5";        //"HTC Portable";
-const char *password = "Alonso11"; //"AlonsoFC11";
+const char *ssid = "LG K5";       
+const char *password = "Alonso11";
 
 /*---- Server MQTT ----*/
 const char *mqtt_server = "m24.cloudmqtt.com";
@@ -14,8 +25,14 @@ const char *device_id = "esp8266-ardu";
 
 const char *topicSub = "Wally/controll";
 
+/*---- Server HAPI ----*/
+const char *host_hapi_server = "192.168.43.84";
+const int port_hapi_server = 8000;
+String fromArdu = "";
+
 WiFiClient espClient;
 PubSubClient client(espClient);
+HTTPClient httpClient;
 
 void setup()
 {
@@ -32,9 +49,33 @@ void loop()
         reconnect();
     }
     client.loop();
+
+
+    //Send data to Server
+    while (Serial.available()){
+      fromArdu = Serial.readString();
+    }
+    if (fromArdu != ""){
+      dataToServer(fromArdu);
+      fromArdu="";
+    }
+    
 }
 
-//Read from Server
+//Write to Server Hapi
+void dataToServer(String data){
+  if (WiFi.status() == WL_CONNECTED){
+      httpClient.begin("http://192.168.43.84:8000/api/v1/stats/insert");
+      httpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
+      httpClient.addHeader("content-type", "multipart/form-data");
+  
+      //String dataPost = "leftScale=2.3&rightScale=1.3&Month=Marzo";
+      httpClient.POST(data);
+      httpClient.end();
+    }
+}
+
+//Read from Server MQTT
 void callback(char *topic, byte *payload, unsigned int length)
 {
     String message = "";
@@ -58,47 +99,24 @@ void callback(char *topic, byte *payload, unsigned int length)
 
 void setup_wifi()
 {
-    delay(10);
-    // We start by connecting to a WiFi network
-    /*Serial.println();
-    Serial.print("Connecting to ");
-    Serial.println(ssid);
-*/
     WiFi.begin(ssid, password);
-
-    /*Serial.print("Estatus de exito: ");
-    Serial.println(WL_CONNECTED);
-    */
+    
     while (WiFi.status() != WL_CONNECTED)
     {
-        //Serial.print("."); //Serial.print(WiFi.status());
         delay(100);
     }
-    /*
-    Serial.println("");
-    Serial.println("WiFi connected");
-    Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
-*/
 }
 
 void reconnect()
 {
     while (!client.connected())
     {
-        //      Serial.print("Attempting MQTT connection...");
-
         if (client.connect(device_id, user_mqtt_server, password_mqtt_server))
         {
-            //        Serial.println("connected");
             client.subscribe(topicSub);
         }
-        else
+        else //failed - try again in 5 seconds
         {
-            /*      Serial.print("failed, rc=");
-            Serial.print(client.state());
-            Serial.println(" try again in 5 seconds");
-            */
             delay(5000);
         }
     }

@@ -124,7 +124,7 @@ void closeTop()
   state = !state;
   servoRight.write(167);
   servoLeft.write(13);
-  Serial.println("Pos: R170 & L10 - Closing top door...");
+  Serial.println("Pos: R167 & L13 - Closing top door...");
 }
 
 void openTop()
@@ -132,7 +132,7 @@ void openTop()
   state = !state;
   servoRight.write(100);
   servoLeft.write(80);
-  Serial.println("Pos: R120 & L60 - Opening top door...");
+  Serial.println("Pos: R100 & L80 - Opening top door...");
 }
 
 void radar()
@@ -190,7 +190,7 @@ void setup()
   pinMode(dcTwo_Pin, OUTPUT);
 
   //------\\
-    closeTop();
+  closeTop();
 }
 
 void loop()
@@ -206,7 +206,15 @@ void loop()
   if (millis() > (currentMillis + 10000))
   {
     currentMillis = millis();
-    getWeight();
+    float lS = (float)scaleLeft.get_units() * 453.592;
+    float lR = (float)scaleRight.get_units() * 453.592;
+    String sendServer = "leftScale=";
+    sendServer += lS;
+    sendServer += "&rightScale=";
+    sendServer += lR;
+    sendServer += "&Month=Junio";
+    wifi.print(sendServer);
+    //getWeight();
   }
 
   //-- Reading WiFi Message --//

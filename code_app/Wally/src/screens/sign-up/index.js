@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
-
+import { ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import stylesSignUp from '../../styles/styles';
 
 export default class SignUp extends React.Component {
@@ -56,7 +48,7 @@ export default class SignUp extends React.Component {
     });
   };
 
-  _registerNewUser = () => {
+  _signUp = () => {
     const formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('email', this.state.email);
@@ -67,18 +59,14 @@ export default class SignUp extends React.Component {
         'Content-Type': 'multipart/form-data'
       },
       body: formData
-    });
-  }
-
-  _signUp = () => {
-    try {
-      this._registerNewUser();
-      this.props.navigation.navigate('Home');
-    } catch (error) {
-      this.setState({
-        response: error.toString()
+    }).then(response => response.text())
+      .then(responseMessage => {
+        if (responseMessage === '1') {
+          this.props.navigation.navigate('Home');
+        } else {
+          Alert.alert('Ya existe una cuenta con este correo electronico.');
+        }
       });
-    }
   };
 
   _submitInformation = () => {
@@ -89,7 +77,7 @@ export default class SignUp extends React.Component {
     ) {
       this._signUp();
     } else {
-      Alert.alert('Los datos ingresados son incorrectos. ');
+      Alert.alert('Los datos ingresados son incorrectos.');
     }
   };
 
@@ -166,11 +154,10 @@ export default class SignUp extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity
-          onPress={this._submitInformation}
-        >
+        <TouchableOpacity onPress={this._submitInformation}>
           <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>
+        {spinner}
       </View>
     );
   }

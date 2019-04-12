@@ -15,5 +15,11 @@
  
  * Aclaración: El código fue ajustado y modificado por Randy y Gustavo
    por las necesidades del proyecto respectivamente.
+
+  https://techtutorialsx.com/2017/04/09/esp8266-connecting-to-mqtt-broker/
+
+  https://techtutorialsx.com/2016/07/21/esp8266-post-requests/
+
+  https://github.com/jatindera/SerialCommunication
  
 */
