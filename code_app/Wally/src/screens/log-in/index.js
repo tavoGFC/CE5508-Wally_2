@@ -136,6 +136,7 @@ export default class LogIn extends React.Component {
         <Image source={wallyTitle} style={styles.imageTitle} />
         <View style={styles.flowRight}>
           <TextInput
+            autoCapitalize={'none'}
             autoCorrect={false}
             keyboardType='email-address'
             onChange={this._onSearchEmailUser}
