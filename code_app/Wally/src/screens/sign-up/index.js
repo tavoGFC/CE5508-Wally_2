@@ -61,14 +61,14 @@ export default class SignUp extends React.Component {
     formData.append('name', this.state.name);
     formData.append('email', this.state.email);
     formData.append('password', this.state.password);
-    fetch('http://192.168.1.8:8000/api/v1/users/insert', {
+    fetch('http://10.10.10.228:8000/api/v1/users/insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       body: formData
     });
-  }
+  };
 
   _signUp = () => {
     try {
@@ -89,7 +89,7 @@ export default class SignUp extends React.Component {
     ) {
       this._signUp();
     } else {
-      Alert.alert('Los datos ingresados son incorrectos. ');
+      Alert.alert('Los datos ingresados son incorrectos.');
     }
   };
 
@@ -166,11 +166,10 @@ export default class SignUp extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity
-          onPress={this._submitInformation}
-        >
+        <TouchableOpacity onPress={this._submitInformation}>
           <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>
+        {spinner}
       </View>
     );
   }

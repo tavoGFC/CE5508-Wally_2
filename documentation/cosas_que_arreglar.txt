@@ -1,0 +1,15 @@
+- si se registra un usuario y entra el home, al darle atras
+vuelve a la ventana de registrarse en lugar de la pagina del login
+
+- encriptar la clave
+
+- no se verifica que el correo realmente existe, solo que tenga 
+el formato de un correo como tal
+
+- si se ejecuta el ingresar sin datos hay un error CORREGIDO
+
+- si se ejecta el ingresar con un dato en mayuscula en el correo hay error CORREGIDO
+
+- si el correo no existe en la basee hay error de JSON PARSE error: Unexpected EOF. ni idea¢¢
+
+- hacer que se refresquen los datos de manera automatica

@@ -12,15 +12,15 @@ export default function MQTTClient(command) {
   });
 
   const client = new Paho.MQTT.Client(
-    'm16.cloudmqtt.com',
-    32757,
+    'm24.cloudmqtt.com',
+    34805,
     'web_' + parseInt(Math.random() * 100, 10)
   );
 
   const options = {
     useSSL: true,
-    userName: 'auggeqol',
-    password: 'r5ZWFcewuPZS',
+    userName: 'ydgftwoz',
+    password: 'D1hzagk3oj49',
     onSuccess: onConnect,
     onFailure: doFail
   };
@@ -29,11 +29,11 @@ export default function MQTTClient(command) {
     console.log('onConnect');
     const topic = 'Wally/controll';
     client.subscribe(topic);
-    message = new Paho.MQTT.Message(command + ',0,');
+    message = new Paho.MQTT.Message(command);
     message.destinationName = topic;
     client.send(message);
   }
-
+  
   function onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
       console.log('onConnectionLost:' + responseObject.errorMessage);
