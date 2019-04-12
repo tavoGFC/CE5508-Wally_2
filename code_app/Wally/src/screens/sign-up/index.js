@@ -169,6 +169,7 @@ export default class SignUp extends React.Component {
         <TouchableOpacity onPress={this._submitInformation}>
           <Text style={styles.button}>REGISTRARSE</Text>
         </TouchableOpacity>
+        {spinner}
       </View>
     );
   }

@@ -28,14 +28,16 @@ export default class LogIn extends React.Component {
     };
 
     this.validateData = this.validateData.bind(this);
+    this.wait = this.wait.bind(this);
   }
 
-  _logIn = () => {
+  /* _logIn = () => {
     try {
       this._verifyUser();
       this.setState({
         response: '¡Bienvenido!'
       });
+      //wait(7000);
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
       } else {
@@ -47,7 +49,7 @@ export default class LogIn extends React.Component {
       });
       console.info(this.state.response);
     }
-  };
+  }; */
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -86,7 +88,7 @@ export default class LogIn extends React.Component {
       return true;
     }
   }
-  _verifyUser = async () => {
+  _logIn = async () => {
     try {
       await fetch(
         `http://10.10.10.228:8000/api/v1/users/findOne?email=${
@@ -102,10 +104,28 @@ export default class LogIn extends React.Component {
             ).password
           });
         });
+
+      this.setState({
+        response: '¡Bienvenido!'
+      });
+      //wait(7000);
+      if (this.state.password === this.state.userPassword) {
+        this.props.navigation.navigate('Home');
+      } else {
+        Alert.alert('Correo o contraseñas son incorrectos, intente de nuevo.');
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
+  wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
 
   render() {
     const spinner = this.state.isLoading ? (
