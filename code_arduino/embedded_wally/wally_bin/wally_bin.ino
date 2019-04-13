@@ -205,7 +205,6 @@ void loop()
   if (millis() > (currentMillis + 60000))
   {
     currentMillis = millis();
-    getWeight();
     float lS = (float)scaleLeft.get_units() * 453.592;
     float lR = (float)scaleRight.get_units() * 453.592;
     String sendServer = "leftScale=";
@@ -230,6 +229,10 @@ void loop()
   else if (wifiMessage == "compress") //move compressor
   {
     controlCompressor();
+    wifiMessage = "";
+  }
+  else if (wifiMessage == "tare"){
+    getWeight();
     wifiMessage = "";
   }
 }

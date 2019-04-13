@@ -54,6 +54,10 @@ void callback(char *topic, byte *payload, unsigned int length)
     {
         Serial.write("compress");
     }
+    else if (message == "tare")
+    {
+        Serial.write("tare");
+    }
 }
 
 //Write to Server Hapi//

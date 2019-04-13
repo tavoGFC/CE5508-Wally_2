@@ -20,7 +20,7 @@ export default class TabDashboard extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://172.20.10.2:8000/api/v1/stats/newestStats')
+    return fetch('http://192.168.43.84:8000/api/v1/stats/newestStats')
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson != '') {

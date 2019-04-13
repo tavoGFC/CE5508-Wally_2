@@ -71,7 +71,7 @@ export default class LogIn extends React.Component {
   _logIn = async () => {
     try {
       await fetch(
-        `http://172.20.10.2:8000/api/v1/users/findOne?email=${this.state.email}`
+        `http://192.168.43.84:8000/api/v1/users/findOne?email=${this.state.email}`
       )
         .then(response => response.json())
         .then(responseJson => {

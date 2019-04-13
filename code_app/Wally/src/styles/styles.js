@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   containerTabController: {
     alignItems: 'center',
     marginTop: 10,
-    padding: 30
+    padding: 4
   },
   descriptionWarningController: {
     color: 'black',
