@@ -18,9 +18,9 @@ function statsRoutes(server) {
     },
     {
       method: 'GET',
-      path: '/api/v1/stats/lastestStats',
+      path: '/api/v1/stats/newestStats',
       handler: function(request, reply) {
-        return WallyStats.findOne().sort({ Month: -1 });
+        return WallyStats.findOne().sort({ _id: -1 });
       }
     },
     {

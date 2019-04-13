@@ -17,30 +17,33 @@ export default class TabController extends React.Component {
   render() {
     return (
       <View style={styles.containerTabController}>
-        <Text style={styles.descriptionWarningController}>
-          Verifique que encima de Wally no haya ningún objeto.
-        </Text>
-        <TouchableOpacity
-          onPress={() => {
-            MQTTClient('open');
-          }}
-        >
-          <Text style={styles.button}>Abrir Tapa</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            MQTTClient('close');
-          }}
-        >
-          <Text style={styles.button}>Cerrar Tapa</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            MQTTClient('compress');
-          }}
-        >
-          <Text style={styles.button}>Comprimir Basura</Text>
-        </TouchableOpacity>
+        <Text style={styles.titleTabDashboard}>Control de Wally</Text>
+        <View style={styles.containerTabController}>
+          <Text style={styles.descriptionWarningController}>
+            Verifique que encima de Wally no haya ningún objeto.
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              MQTTClient('open');
+            }}
+          >
+            <Text style={styles.button}>Abrir Tapa</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              MQTTClient('close');
+            }}
+          >
+            <Text style={styles.button}>Cerrar Tapa</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              MQTTClient('compress');
+            }}
+          >
+            <Text style={styles.button}>Comprimir Basura</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

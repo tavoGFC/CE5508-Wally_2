@@ -1,8 +1,15 @@
 import * as React from 'react';
-import { ActivityIndicator, Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import wallyTitle from '../../../assets/wallyTitle.png';
 import stylesLogIn from '../../styles/styles';
-
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
@@ -17,10 +24,9 @@ export default class LogIn extends React.Component {
       email: '',
       password: ''
     };
-    
+
     this.validateData = this.validateData.bind(this);
   }
-
 
   _onSearchEmailUser = event => {
     this.setState({
@@ -63,34 +69,31 @@ export default class LogIn extends React.Component {
   _logIn = async () => {
     try {
       await fetch(
-        `http://192.168.1.8:8000/api/v1/users/findOne?email=${
-        this.state.email
-        }`
+        `http://172.20.10.2:8000/api/v1/users/findOne?email=${this.state.email}`
       )
-      .then(response => response.json())
-      .then(responseJson => {
-        if (responseJson != '') {
-          const parseResponse = JSON.stringify(responseJson);
-          if (parseResponse != "") {
-            this.setState({
-              userPassword: JSON.parse(
-                parseResponse.substring(1, parseResponse.length - 1)
-              ).password
-            });
+        .then(response => response.json())
+        .then(responseJson => {
+          if (responseJson != '') {
+            const parseResponse = JSON.stringify(responseJson);
+            if (parseResponse != '') {
+              this.setState({
+                userPassword: JSON.parse(
+                  parseResponse.substring(1, parseResponse.length - 1)
+                ).password
+              });
+            }
           }
-        }
-      });
-      
+        });
+
       if (this.state.password === this.state.userPassword) {
         this.props.navigation.navigate('Home');
       } else {
-        Alert.alert('Correo o contraseñas son incorrectos, intente de nuevo.');
+        Alert.alert('Correo o contraseña son incorrectos, intente de nuevo.');
       }
     } catch (error) {
       console.error(error);
     }
   };
-
 
   render() {
     const spinner = this.state.isLoading ? (
@@ -121,7 +124,9 @@ export default class LogIn extends React.Component {
             underlineColorAndroid={'transparent'}
             value={this.state.searchPassword}
           />
-          <TouchableOpacity onPress={this._submitData}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Home')}
+          >
             <Text style={styles.button}>INGRESAR</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._onSignUpPressed.bind(this)}>
