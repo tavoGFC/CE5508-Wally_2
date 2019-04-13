@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import stylesSignUp from '../../styles/styles';
+import SimpleCrypto from 'simple-crypto-js';
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -52,8 +53,10 @@ export default class SignUp extends React.Component {
     const formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('email', this.state.email);
-    formData.append('password', this.state.password);
-    fetch('http://192.168.1.8:8000/api/v1/users/insert', {
+    const simpleCrypto = new SimpleCrypto('RNwallyAPP');
+    const passwordEncrypt = simpleCrypto.encrypt(this.state.password);
+    formData.append('password', passwordEncrypt);
+    fetch('http://192.168.43.84:8000/api/v1/users/insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data'
