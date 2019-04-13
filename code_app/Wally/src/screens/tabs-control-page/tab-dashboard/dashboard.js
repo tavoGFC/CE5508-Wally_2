@@ -36,7 +36,6 @@ export default class TabDashboard extends React.Component {
   }
 
   render() {
-    //Alert.alert(this.state.dataSource);
     if (this.state.isLoading) {
       return (
         <View style={{ flex: 1, padding: 20 }}>

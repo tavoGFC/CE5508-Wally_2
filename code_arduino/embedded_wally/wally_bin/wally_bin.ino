@@ -47,6 +47,14 @@ float calibrationFactor = -92050.00;
 SoftwareSerial wifi(RX_Pin, TX_Pin);
 String wifiMessage = "";
 
+void closeTop()
+{
+  state = !state;
+  servoRight.write(167);
+  servoLeft.write(13);
+  Serial.println("Pos: R167 & L13 - Closing top door...");
+}
+
 void compressor(int directionCompressor)
 {
   pwm1 = map(directionCompressor, 0, 1023, 0, 255);
@@ -119,14 +127,6 @@ void getWeight()
   }*/
 }
 
-void closeTop()
-{
-  state = !state;
-  servoRight.write(167);
-  servoLeft.write(13);
-  Serial.println("Pos: R167 & L13 - Closing top door...");
-}
-
 void openTop()
 {
   state = !state;
@@ -146,7 +146,6 @@ void radar()
   duration = pulseIn(echo_Pin, HIGH);
   distance = duration / 2 / 29.1;
 
-  //Serial.println(String(distance) + " cm");
   if (distance > Max_Distance)
   {
     //Serial.println("....fuera de rango...");

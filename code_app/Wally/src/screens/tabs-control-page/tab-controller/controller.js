@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import stylesTabController from '../../../styles/styles';
 import MQTTClient from '../../../components/mqtt';
-//import { test1, test2, test3 } from '../../../components/testFile';
 
 export default class TabController extends React.Component {
   static navigationOptions = {

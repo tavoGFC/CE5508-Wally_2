@@ -33,7 +33,7 @@ export default function MQTTClient(command) {
     message.destinationName = topic;
     client.send(message);
   }
-  
+
   function onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
       console.log('onConnectionLost:' + responseObject.errorMessage);

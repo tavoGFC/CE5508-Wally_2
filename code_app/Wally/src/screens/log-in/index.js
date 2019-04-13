@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+
 import wallyTitle from '../../../assets/wallyTitle.png';
 import stylesLogIn from '../../styles/styles';
 import SimpleCrypto from 'simple-crypto-js';
@@ -70,9 +71,7 @@ export default class LogIn extends React.Component {
   _logIn = async () => {
     try {
       await fetch(
-        `http://192.168.43.84:8000/api/v1/users/findOne?email=${
-          this.state.email
-        }`
+        `http://172.20.10.2:8000/api/v1/users/findOne?email=${this.state.email}`
       )
         .then(response => response.json())
         .then(responseJson => {

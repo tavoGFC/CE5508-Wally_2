@@ -13,7 +13,7 @@
 #include <PubSubClient.h>
 
 /*---- WiFI ----*/
-const char *ssid = "LG K5";       
+const char *ssid = "LG K5";
 const char *password = "Alonso11";
 
 /*---- Server MQTT ----*/
@@ -34,46 +34,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 HTTPClient httpClient;
 
-void setup()
-{
-    Serial.begin(9600);
-    setup_wifi();
-    client.setServer(mqtt_server, port_mqtt_server);
-    client.setCallback(callback);
-}
-
-void loop()
-{
-    if (!client.connected())
-    {
-        reconnect();
-    }
-    client.loop();
-
-
-    //Send data to Server
-    while (Serial.available()){
-      fromArdu = Serial.readString();
-    }
-    if (fromArdu != ""){
-      dataToServer(fromArdu);
-      fromArdu="";
-    }
-    
-}
-
-//Write to Server Hapi
-void dataToServer(String data){
-  if (WiFi.status() == WL_CONNECTED){
-      httpClient.begin("http://192.168.43.84:8000/api/v1/stats/insert");
-      httpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
-      httpClient.addHeader("content-type", "multipart/form-data");
-      httpClient.POST(data);
-      httpClient.end();
-    }
-}
-
-//Read from Server MQTT
+//Read from Server MQTT//
 void callback(char *topic, byte *payload, unsigned int length)
 {
     String message = "";
@@ -95,13 +56,16 @@ void callback(char *topic, byte *payload, unsigned int length)
     }
 }
 
-void setup_wifi()
+//Write to Server Hapi//
+void dataToServer(String data)
 {
-    WiFi.begin(ssid, password);
-    
-    while (WiFi.status() != WL_CONNECTED)
+    if (WiFi.status() == WL_CONNECTED)
     {
-        delay(100);
+        httpClient.begin("http://192.168.43.84:8000/api/v1/stats/insert");
+        httpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpClient.addHeader("content-type", "multipart/form-data");
+        httpClient.POST(data);
+        httpClient.end();
     }
 }
 
@@ -117,5 +81,43 @@ void reconnect()
         {
             delay(5000);
         }
+    }
+}
+
+void setup_wifi()
+{
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(100);
+    }
+}
+
+void setup()
+{
+    Serial.begin(9600);
+    setup_wifi();
+    client.setServer(mqtt_server, port_mqtt_server);
+    client.setCallback(callback);
+}
+
+void loop()
+{
+    if (!client.connected())
+    {
+        reconnect();
+    }
+    client.loop();
+
+    //Send data to Server//
+    while (Serial.available())
+    {
+        fromArdu = Serial.readString();
+    }
+    if (fromArdu != "")
+    {
+        dataToServer(fromArdu);
+        fromArdu = "";
     }
 }

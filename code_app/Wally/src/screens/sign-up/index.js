@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+
 import stylesSignUp from '../../styles/styles';
 import SimpleCrypto from 'simple-crypto-js';
 
@@ -131,38 +132,39 @@ export default class SignUp extends React.Component {
         </Text>
         <View style={styles.flowRight}>
           <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.textInput}
-            placeholder='Nombre'
-            value={this.state.searchNameUser}
-            placeholderTextColor='#656565'
             onChange={this._onSearchNameUser}
+            placeholder='Nombre'
+            placeholderTextColor='#656565'
+            style={styles.textInput}
+            underlineColorAndroid={'transparent'}
+            value={this.state.searchNameUser}
           />
           <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.textInput}
-            placeholder='Correo'
-            value={this.state.searchEmailUser}
-            placeholderTextColor='#656565'
+            autoCapitalize={'none'}
             onChange={this._onSearchEmailUser}
+            placeholder='Correo'
+            placeholderTextColor='#656565'
+            style={styles.textInput}
+            underlineColorAndroid={'transparent'}
+            value={this.state.searchEmailUser}
           />
           <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.textInput}
-            placeholder='Contraseña'
-            value={this.state.searchPasswordUser}
-            placeholderTextColor='#656565'
             onChange={this._onSearchPasswordUser}
+            placeholder='Contraseña'
+            placeholderTextColor='#656565'
             secureTextEntry={true}
+            style={styles.textInput}
+            underlineColorAndroid={'transparent'}
+            value={this.state.searchPasswordUser}
           />
           <TextInput
-            underlineColorAndroid={'transparent'}
-            style={styles.textInput}
-            placeholder='Repetir Contraseña '
-            value={this.state.searchConfirmPasswordUser}
-            placeholderTextColor='#656565'
             onChange={this._onSearchConfirmPasswordUser}
+            placeholder='Repetir Contraseña '
+            placeholderTextColor='#656565'
             secureTextEntry={true}
+            style={styles.textInput}
+            underlineColorAndroid={'transparent'}
+            value={this.state.searchConfirmPasswordUser}
           />
         </View>
         <TouchableOpacity onPress={this._submitInformation}>

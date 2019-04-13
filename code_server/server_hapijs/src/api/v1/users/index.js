@@ -19,7 +19,7 @@ function usersRoutes(server) {
     },
     {
       method: 'GET',
-      path: '/api/v1/allUsers',
+      path: '/api/v1/users/allUsers',
       handler: function(request, reply) {
         return WallyUsers.find();
       }
