@@ -68,8 +68,6 @@ void dataToServer(String data){
       httpClient.begin("http://192.168.43.84:8000/api/v1/stats/insert");
       httpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
       httpClient.addHeader("content-type", "multipart/form-data");
-  
-      //String dataPost = "leftScale=2.3&rightScale=1.3&Month=Marzo";
       httpClient.POST(data);
       httpClient.end();
     }

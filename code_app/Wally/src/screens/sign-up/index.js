@@ -1,13 +1,7 @@
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import stylesSignUp from '../../styles/styles';
+import SimpleCrypto from 'simple-crypto-js';
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
@@ -59,20 +53,21 @@ export default class SignUp extends React.Component {
     const formData = new FormData();
     formData.append('name', this.state.name);
     formData.append('email', this.state.email);
-    formData.append('password', this.state.password);
-    fetch('http://172.20.10.2:8000/api/v1/users/insert', {
+    const simpleCrypto = new SimpleCrypto('RNwallyAPP');
+    const passwordEncrypt = simpleCrypto.encrypt(this.state.password);
+    formData.append('password', passwordEncrypt);
+    fetch('http://192.168.43.84:8000/api/v1/users/insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       body: formData
-    })
-      .then(response => response.text())
+    }).then(response => response.text())
       .then(responseMessage => {
         if (responseMessage === '1') {
           this.props.navigation.navigate('Home');
         } else {
-          Alert.alert('Ya existe una cuenta con este correo electrónico.');
+          Alert.alert('Ya existe una cuenta con este correo electronico.');
         }
       });
   };

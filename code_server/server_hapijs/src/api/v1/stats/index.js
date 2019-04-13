@@ -5,14 +5,14 @@ function statsRoutes(server) {
     {
       method: 'GET',
       path: '/pruebaStats',
-      handler: function(request, h) {
+      handler: function (request, h) {
         return '<h1>¡La Prueba Stats está funcionando!</h1>';
       }
     },
     {
       method: 'GET',
       path: '/api/v1/stats/allStats',
-      handler: function(request, reply) {
+      handler: function (request, reply) {
         return WallyStats.find();
       }
     },
@@ -26,12 +26,16 @@ function statsRoutes(server) {
     {
       method: 'POST',
       path: '/api/v1/stats/insert',
-      handler: function(request, reply) {
-        const { leftScale, rightScale, Month } = request.payload;
+      handler: function (request, reply) {
+        const { leftScale, rightScale } = request.payload;
+        var months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 
+        'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'];
+        var now = new Date();
+        var thisMonth = months[now.getMonth()];
         const stats = new WallyStats({
           leftScale,
           rightScale,
-          Month
+          Month: thisMonth
         });
         return stats.save();
       }

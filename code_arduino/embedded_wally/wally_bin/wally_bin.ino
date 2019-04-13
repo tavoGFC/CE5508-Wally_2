@@ -7,7 +7,6 @@
  
  - Randy Martínez y Gustavo Fallas. 
 */
-
 #include <Servo.h>
 #include "HX711.h"
 #include <SoftwareSerial.h>
@@ -81,7 +80,9 @@ void getWeight()
 {
   scaleRight.set_scale(calibrationFactor);
   scaleLeft.set_scale(calibrationFactor);
-
+  scaleRight.tare();
+  scaleLeft.tare();
+  /*
   Serial.print("Reading compartment right: ");
   Serial.print(scaleRight.get_units(), 1);
   Serial.print(" lbs ");
@@ -98,7 +99,7 @@ void getWeight()
   Serial.print(scaleLeft.get_units() * 453.592, 3);
   Serial.print(" g ");
   Serial.print('\n');
-
+  
   if (Serial.available())
   {
     char temp = Serial.read();
@@ -113,10 +114,9 @@ void getWeight()
     else if (temp == 't' || temp == 'T')
     {
       Serial.println("HX711 calibration sketch");
-      scaleRight.tare();
-      scaleLeft.tare();
+      
     }
-  }
+  }*/
 }
 
 void closeTop()
@@ -146,10 +146,10 @@ void radar()
   duration = pulseIn(echo_Pin, HIGH);
   distance = duration / 2 / 29.1;
 
-  Serial.println(String(distance) + " cm");
+  //Serial.println(String(distance) + " cm");
   if (distance > Max_Distance)
   {
-    Serial.println("....fuera de rango...");
+    //Serial.println("....fuera de rango...");
   }
   else if (distance < 20 && !state)
   {
@@ -203,18 +203,18 @@ void loop()
   radar();
 
   //-- Weight Sensors --//
-  if (millis() > (currentMillis + 10000))
+  if (millis() > (currentMillis + 60000))
   {
     currentMillis = millis();
+    getWeight();
     float lS = (float)scaleLeft.get_units() * 453.592;
     float lR = (float)scaleRight.get_units() * 453.592;
     String sendServer = "leftScale=";
     sendServer += lS;
     sendServer += "&rightScale=";
     sendServer += lR;
-    sendServer += "&Month=Junio";
     wifi.print(sendServer);
-    //getWeight();
+    Serial.println("Enviando pesos...");
   }
 
   //-- Reading WiFi Message --//
