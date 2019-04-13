@@ -64,7 +64,7 @@ export default class SignUp extends React.Component {
     const simpleCrypto = new SimpleCrypto('RNwallyAPP');
     const passwordEncrypt = simpleCrypto.encrypt(this.state.password);
     formData.append('password', passwordEncrypt);
-    fetch('http://172.20.10.2:8000/api/v1/users/insert', {
+    fetch('http://192.168.43.84:8000/api/v1/users/insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data'
