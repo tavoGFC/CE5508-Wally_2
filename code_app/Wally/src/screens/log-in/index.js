@@ -109,7 +109,6 @@ export default class LogIn extends React.Component {
           <TextInput
             autoCapitalize={'none'}
             autoCorrect={false}
-            keyboardType='email-address'
             onChange={this._onSearchEmailUser}
             placeholder='Correo'
             placeholderTextColor='#656565'

@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     color: 'green',
     fontSize: 22,
     marginBottom: 5,
+    marginTop: 5,
     textAlign: 'center'
   },
   titleTabDashboard: {

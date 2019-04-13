@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  Text,
+  View
+} from 'react-native';
 
 import stylesTabDashboard from '../../../styles/styles';
 
@@ -10,7 +16,7 @@ export default class TabDashboard extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = { isLoading: true, refreshing: false };
   }
 
   componentDidMount() {
@@ -44,36 +50,32 @@ export default class TabDashboard extends React.Component {
       );
     } else {
       return (
-        <View style={styles.containerTabDashboard}>
-          <Text style={styles.titleTabDashboard}>Estadísticas de Wally</Text>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={() => this.componentDidMount()}
+            />
+          }
+        >
           <View style={styles.containerTabDashboard}>
-            {
+            <Text style={styles.titleTabDashboard}>Estadísticas de Wally</Text>
+            <View style={styles.containerTabDashboard}>
               <Text style={styles.descriptionTabDashboard}>
-                <Text>
-                  {'\n'}
-                  Mes:
-                  {'\n'}
-                  {this.state.dataSource.Month}
-                  {'\n'}
-                </Text>
-                <Text>
-                  {'\n'}
-                  Material desechable:
-                  {'\n'}
-                  {this.state.dataSource.leftScale} kg
-                  {'\n'}
-                </Text>
-                <Text>
-                  {'\n'}
-                  Material reciclable:
-                  {'\n'}
-                  {this.state.dataSource.rightScale} kg
-                  {'\n'}
-                </Text>
+                Mes:
+                {this.state.dataSource.Month}
               </Text>
-            }
+              <Text style={styles.descriptionTabDashboard}>
+                Material desechable:
+                {this.state.dataSource.leftScale} kg
+              </Text>
+              <Text style={styles.descriptionTabDashboard}>
+                Material reciclable:
+                {this.state.dataSource.rightScale} kg
+              </Text>
+            </View>
           </View>
-        </View>
+        </ScrollView>
       );
     }
   }
