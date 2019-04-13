@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity, View  } from 'react-native';
 
 import stylesSettings from '../../styles/styles';
-import MQTTClient from '../../../components/mqtt';
+import MQTTClient from '../../components/mqtt';
 
 export default class SettingsPage extends React.Component {
   static navigationOptions = {
@@ -16,7 +16,7 @@ export default class SettingsPage extends React.Component {
   render() {
     return (
       <View style={styles.containerTabController}>
-        <Text style={styles.titleTabDashboard}>Ajustes de Wally:</Text>
+        <Text style={styles.titleTabDashboard}>Ajustes de Wally</Text>
         <View style={styles.containerTabController}>
           <Text style={styles.descriptionWarningController}>
             Ajuste el peso tara de las pesas de Wally.

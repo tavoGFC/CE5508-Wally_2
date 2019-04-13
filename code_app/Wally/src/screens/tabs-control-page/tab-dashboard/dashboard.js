@@ -67,11 +67,11 @@ export default class TabDashboard extends React.Component {
               </Text>
               <Text style={styles.descriptionTabDashboard}>
                 Material desechable:
-                {this.state.dataSource.leftScale} kg
+                {this.state.dataSource.leftScale} g
               </Text>
               <Text style={styles.descriptionTabDashboard}>
                 Material reciclable:
-                {this.state.dataSource.rightScale} kg
+                {this.state.dataSource.rightScale} g
               </Text>
             </View>
           </View>
