@@ -24,7 +24,7 @@ export default class TabController extends React.Component {
           <TouchableOpacity
             onPress={() => {
               MQTTClient('open');
-            }} 
+            }}
           >
             <Text style={styles.button}>Abrir Tapa</Text>
           </TouchableOpacity>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, TouchableOpacity, View  } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import stylesSettings from '../../styles/styles';
 import MQTTClient from '../../components/mqtt';
