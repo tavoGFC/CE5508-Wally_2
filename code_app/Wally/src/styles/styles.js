@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   // controller tab screen
   containerTabController: {
     alignItems: 'center',
-    marginTop: 65,
+    marginTop: 10,
     padding: 30
   },
   descriptionWarningController: {
@@ -116,10 +116,22 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   // dashboard tab screen
-  containerDashboard: {
+  containerTabDashboard: {
     alignItems: 'center',
-    marginTop: 65,
+    marginTop: 10,
     padding: 30
+  },
+  descriptionTabDashboard: {
+    color: 'green',
+    fontSize: 22,
+    marginBottom: 5,
+    textAlign: 'center'
+  },
+  titleTabDashboard: {
+    color: 'black',
+    fontSize: 30,
+    marginBottom: 0,
+    textAlign: 'center'
   }
 });
 

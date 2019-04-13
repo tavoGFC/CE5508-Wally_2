@@ -18,8 +18,8 @@ function statsRoutes(server) {
     },
     {
       method: 'GET',
-      path: '/api/v1/stats/lastestStats',
-      handler: function (request, reply) {
+      path: '/api/v1/stats/newestStats',
+      handler: function(request, reply) {
         return WallyStats.findOne().sort({ _id: -1 });
       }
     },
