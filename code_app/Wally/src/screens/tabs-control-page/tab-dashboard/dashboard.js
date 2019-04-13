@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList, ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
 import stylesTabDashboard from '../../../styles/styles';
 
@@ -14,16 +14,21 @@ export default class TabDashboard extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('http://10.10.10.228:8000/api/v1/stats/latestStats')
+    return fetch('http://172.20.10.2:8000/api/v1/stats/newestStats')
       .then(response => response.json())
       .then(responseJson => {
-        this.setState(
-          {
-            isLoading: false,
-            dataSource: responseJson
-          },
-          function() {}
-        );
+        if (responseJson != '') {
+          const parseResponse = JSON.stringify(responseJson);
+          if (parseResponse != '') {
+            this.setState(
+              {
+                isLoading: false,
+                dataSource: JSON.parse(parseResponse)
+              },
+              function() {}
+            );
+          }
+        }
       })
       .catch(error => {
         console.error(error);
@@ -31,6 +36,7 @@ export default class TabDashboard extends React.Component {
   }
 
   render() {
+    //Alert.alert(this.state.dataSource);
     if (this.state.isLoading) {
       return (
         <View style={{ flex: 1, padding: 20 }}>
@@ -38,17 +44,39 @@ export default class TabDashboard extends React.Component {
         </View>
       );
     } else {
-      const dataWally = this.state.dataSource.map((val, key) => {
-        return (
-          <View key={key} style={styles.description}>
-            <Text>Mes: {val.Month} </Text>
-            <Text>{val.leftScale} kg de basura </Text>
-            <Text>{val.leftScale} kg de material reciclable </Text>
+      return (
+        <View style={styles.containerTabDashboard}>
+          <Text style={styles.titleTabDashboard}>Estadísticas de Wally</Text>
+          <View style={styles.containerTabDashboard}>
+            {
+              <Text style={styles.descriptionTabDashboard}>
+                <Text>
+                  {'\n'}
+                  Mes:
+                  {'\n'}
+                  {this.state.dataSource.Month}
+                  {'\n'}
+                </Text>
+                <Text>
+                  {'\n'}
+                  Material desechable:
+                  {'\n'}
+                  {this.state.dataSource.leftScale} kg
+                  {'\n'}
+                </Text>
+                <Text>
+                  {'\n'}
+                  Material reciclable:
+                  {'\n'}
+                  {this.state.dataSource.rightScale} kg
+                  {'\n'}
+                </Text>
+              </Text>
+            }
           </View>
-        );
-      });
+        </View>
+      );
     }
-    return <View style={styles.containerDashboard}>{dataWally}</View>;
   }
 }
 
