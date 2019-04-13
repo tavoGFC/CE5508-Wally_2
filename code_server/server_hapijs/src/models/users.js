@@ -6,7 +6,7 @@ const WallyUsersSchema = new Schema({
   name: String,
   email: {
     type: String,
-    unique: true,
+    unique: true
   },
   password: String
 });
